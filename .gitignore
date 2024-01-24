@@ -103,7 +103,4 @@ dist
 # TernJS port file
 .tern-port
 nonograms/style.css.map
-nonograms/style.scss
-nonograms/.prettierrc.js
-nonograms/.eslintrc.js
 .vscode/settings.json

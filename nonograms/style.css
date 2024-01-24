@@ -123,7 +123,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -133,33 +133,52 @@ table {
 }
 
 @font-face {
-  font-family: 'Dell';
-  src: url('./fonts/Dell.ttf') format('truetype');
+  font-family: "Dell";
+  src: url("./fonts/Dell.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Ashar';
-  src: url('./fonts/Ashar.ttf') format('truetype');
+  font-family: "Ashar";
+  src: url("./fonts/Ashar.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Karolina';
-  src: url('./fonts/Karolina-Regular.woff2') format('woff2');
+  font-family: "Karolina";
+  src: url("./fonts/Karolina-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 .body {
-  font-family: 'Ashar';
+  font-family: "Ashar";
   background: rgba(88, 76, 56, 0.585);
 }
 
+.offensive {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 70vw;
+  height: 70px;
+  margin: 0 auto;
+}
+.offensive__btn {
+  padding: 18px;
+  color: #d7ced6;
+  background: #282b37;
+  border-radius: 20px;
+}
+.offensive__btn:hover {
+  color: #282b37;
+  background: #d7ced6;
+  cursor: pointer;
+}
 .game {
   display: grid;
-  grid-template-areas: 'first second' 'third four';
+  grid-template-areas: "first second" "third four";
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 .field {
@@ -183,7 +202,7 @@ table {
   overflow: hidden;
 }
 .cross::before {
-  content: '';
+  content: "";
   position: absolute;
   display: block;
   width: auto;
@@ -200,7 +219,7 @@ table {
   grid-area: second;
   margin: 0 auto;
   display: grid;
-  font-family: 'Ashar';
+  font-family: "Ashar";
   grid-template-rows: 70px;
 }
 .upper-hints__line {
@@ -229,8 +248,8 @@ table {
   height: 100vh;
   font-size: 50px;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .menu__start {
   text-align: center;
@@ -242,7 +261,7 @@ table {
   color: #bcab97;
   margin-top: 10px;
   -webkit-text-decoration: #282b37 underline;
-  text-decoration: #282b37 underline;
+          text-decoration: #282b37 underline;
 }
 .menu__text {
   color: #d7ced6;
@@ -256,6 +275,6 @@ table {
 .menu__level:hover {
   color: #bcab97;
   -webkit-text-decoration: #282b37 underline;
-  text-decoration: #282b37 underline;
+          text-decoration: #282b37 underline;
   cursor: pointer;
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

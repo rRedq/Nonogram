@@ -1,0 +1,308 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+html {
+  height: 100%;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+@font-face {
+  font-family: 'Dell';
+  src: url('./fonts/Dell.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ashar';
+  src: url('./fonts/Ashar.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Karolina';
+  src: url('./fonts/Karolina-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+$light-5: #0c1015;
+$light-4: #343331;
+$light-3: #4e4a47;
+$light-2: #bcab97;
+$light-1: #d7ced6;
+$another-5: #1a1e2e;
+$another-4: #282b37;
+$another-3: #596869;
+$another-2: #818189;
+$another-1: #dee1ed;
+$third-5: #22223b;
+$third-4: #4a4e69;
+$third-3: #9a8c98;
+$third-2: #c9ada7;
+$third-1: #f2e9e4;
+.body {
+  font-family: 'Ashar';
+  background: rgba(88, 76, 56, 0.585);
+}
+.offensive {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 70vw;
+  height: 70px;
+  margin: 0 auto;
+  // background: $another-2;
+  &__btn {
+    // width: 150px;
+    // height: 50px;
+    padding: 18px;
+    color: $light-1;
+    background: $another-4;
+    border-radius: 20px;
+    &:hover {
+      color: $another-4;
+      background: $light-1;
+      cursor: pointer;
+    }
+  }
+  &__timer {
+  }
+}
+.game {
+  display: grid;
+  // grid-template-columns: 70px 250px;
+  // grid-template-rows: 70px 250px;
+  grid-template-areas:
+    'first second'
+    'third four';
+  justify-content: center;
+  margin-top: 50px;
+}
+.field {
+  grid-area: four;
+  display: grid;
+  // grid-template-columns: repeat(5, 50px);
+  // grid-template-rows: repeat(5, 50px);
+  margin: 0 auto;
+  &__cell {
+    background: rgb(96, 93, 93);
+    border: 1px solid rgb(192, 190, 190);
+    box-sizing: border-box;
+  }
+}
+.fill {
+  background: rgb(56, 56, 56);
+}
+.cross {
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: auto;
+    height: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(9, 9, 9, 0) url(./img/cross.svg) no-repeat;
+    background-size: 100% 100%;
+  }
+}
+.upper-hints {
+  grid-area: second;
+  margin: 0 auto;
+  display: grid;
+  font-family: 'Ashar';
+  // grid-template-columns: repeat(5, 50px);
+  grid-template-rows: 70px;
+
+  &__line {
+    background: rgb(141, 139, 139);
+    border: 1px solid rgb(192, 190, 190);
+    box-sizing: border-box;
+  }
+}
+.lower-hints {
+  grid-area: third;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 70px;
+  grid-template-rows: repeat(5, 50px);
+
+  &__line {
+    background: rgb(141, 139, 139);
+    border: 1px solid rgb(192, 190, 190);
+    box-sizing: border-box;
+  }
+}
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 50px;
+  user-select: none;
+
+  &__start {
+    text-align: center;
+    padding: 40px;
+    border-radius: 30px;
+    background: $light-3;
+  }
+  &__label {
+    color: $light-2;
+    margin-top: 10px;
+    text-decoration: $another-4 underline;
+  }
+  &__text {
+    color: $light-1;
+    margin-top: 10px;
+    margin-bottom: 60px;
+  }
+  &__level {
+    color: $another-2;
+    margin-bottom: 20px;
+
+    &:hover {
+      color: $light-2;
+      text-decoration: $another-4 underline;
+      // text-decoration: $another-4 wavy underline;
+      cursor: pointer;
+    }
+  }
+}
+@media (hover: hover) {
+  .menu {
+    &__text {
+      // color: $another-4;
+    }
+    &__level {
+      // color: $another-4;
+    }
+  }
+}
+// @media screen and (width < 970px) {
+// }
+// @media screen and (width < 620px) {
+// }
