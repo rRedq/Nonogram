@@ -53,22 +53,20 @@ function createGame(param) {
 
 function createOffensive() {
   const offensive = createNewElement('section', 'offensive');
-  const btn = createNewElement('div', 'offensive__btn');
+  // const btn = createNewElement('div', 'offensive__btn');
   const timer = createNewElement('div', 'offensive__timer');
   main.append(offensive);
-  offensive.append(btn);
-  btn.textContent = 'На главную';
+  // offensive.append(btn);
+  // btn.textContent = 'На главную';
   offensive.append(timer);
-  timer.textContent = '00:00';
+  timer.textContent = '0:00:00';
   setTimer(timer);
 
-  btn.addEventListener('click', btnClick);
+  // btn.addEventListener('click', btnClick);
 }
 
 function setTimer(param) {
   currentTimer = 0;
-  let sec = parseInt(currentTimer % 60, 10);
-  let min = parseInt(currentTimer / 60, 10);
 
   interval = setInterval(() => {
     currentTimer += 1;
@@ -76,18 +74,12 @@ function setTimer(param) {
     let min = parseInt(currentTimer / 60, 10);
     min = min < 10 ? '0' + min : min;
     sec = sec < 10 ? '0' + sec : sec;
-    param.textContent = min + ':' + sec;
+    param.textContent = '0:' + min + ':' + sec;
 
     // if (currentTimer >= 60) {
     //   currentTimer = 0;
     // }
   }, 1000);
-}
-
-function btnClick() {
-  main.remove();
-  clearInterval(interval);
-  createMenu();
 }
 
 export { createGame };

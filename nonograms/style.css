@@ -155,6 +155,30 @@ table {
   background: rgba(88, 76, 56, 0.585);
 }
 
+.header {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100vw;
+  height: 70px;
+  background: #4e4a47;
+}
+.header__btn {
+  width: 130px;
+  font-size: 22px;
+  padding: 15px;
+  margin-right: 50px;
+  text-align: center;
+  color: #0c1015;
+  background: #bcab97;
+  border-radius: 20px;
+}
+.header__btn:hover {
+  color: #d7ced6;
+  background: #818189;
+  cursor: pointer;
+}
+
 .offensive {
   display: flex;
   align-items: center;
@@ -163,17 +187,12 @@ table {
   height: 70px;
   margin: 0 auto;
 }
-.offensive__btn {
-  padding: 18px;
-  color: #d7ced6;
-  background: #282b37;
-  border-radius: 20px;
-}
-.offensive__btn:hover {
+.offensive__timer {
+  font-family: "Dell";
+  font-size: 25px;
   color: #282b37;
-  background: #d7ced6;
-  cursor: pointer;
 }
+
 .game {
   display: grid;
   grid-template-areas: "first second" "third four";
@@ -245,7 +264,7 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 70px);
   font-size: 50px;
   -webkit-user-select: none;
      -moz-user-select: none;
