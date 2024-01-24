@@ -163,12 +163,21 @@ $third-1: #f2e9e4;
 }
 .header {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   width: 100vw;
   height: 70px;
   background: $light-3;
   // background: linear-gradient(98deg, $light-3 81%, $light-2 99%);
+  &__logo {
+    color: $light-2;
+    margin-left: 30px;
+    font-family: 'Dell';
+    font-size: 60px;
+  }
+  &__container {
+    display: flex;
+  }
   &__btn {
     width: 130px;
     font-size: 22px;

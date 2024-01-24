@@ -67,6 +67,7 @@ function createOffensive() {
 
 function setTimer(param) {
   currentTimer = 0;
+  clearInterval(interval);
 
   interval = setInterval(() => {
     currentTimer += 1;

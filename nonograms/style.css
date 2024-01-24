@@ -157,11 +157,20 @@ table {
 
 .header {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   width: 100vw;
   height: 70px;
   background: #4e4a47;
+}
+.header__logo {
+  color: #bcab97;
+  margin-left: 30px;
+  font-family: "Dell";
+  font-size: 60px;
+}
+.header__container {
+  display: flex;
 }
 .header__btn {
   width: 130px;
