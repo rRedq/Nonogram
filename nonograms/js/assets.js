@@ -19,4 +19,11 @@ const thirdOne = [
   [0, 0, 1, 0, 0],
   [0, 1, 1, 1, 0],
 ];
-export { firstOne };
+const fourOne = [
+  [1, 0, 1, 0, 1],
+  [1, 0, 1, 0, 1],
+  [0, 0, 1, 0, 0],
+  [1, 0, 1, 1, 0],
+  [1, 1, 0, 1, 1],
+];
+export { firstOne, secondOne, fourOne };

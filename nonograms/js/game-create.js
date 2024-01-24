@@ -1,11 +1,12 @@
 import { createNewElement } from './helpers.js';
-import { firstOne } from './assets.js';
+import { firstOne, secondOne, fourOne } from './assets.js';
 import { fieldLeftClick, fieldRightClick } from './clicks.js';
 import { createMenu } from './menu.js';
 
 let main = '';
 let currentTimer = 0;
 let interval = null;
+let correctCount = 0;
 
 function createGame(param) {
   main = createNewElement('main', 'main');
@@ -13,7 +14,8 @@ function createGame(param) {
   const game = createNewElement('section', 'game');
   const upperHints = createNewElement('div', 'upper-hints');
   const lowerHints = createNewElement('div', 'lower-hints');
-  let size = param;
+  const leftHints = setLeftHints(param);
+  const rightHints = setUpperHints(param);
 
   document.body.append(main);
   createOffensive();
@@ -22,28 +24,27 @@ function createGame(param) {
   game.append(field);
   game.append(lowerHints);
 
-  // console.table(firstOne);
+  field.style.gridTemplateColumns = `repeat(${param}, 50px`;
+  field.style.gridTemplateRows = `repeat(${param}, 50px`;
+  upperHints.style.gridTemplateColumns = `repeat(${param}, 50px`;
 
-  field.style.gridTemplateColumns = `repeat(${size}, 50px`;
-  field.style.gridTemplateRows = `repeat(${size}, 50px`;
-  upperHints.style.gridTemplateColumns = `repeat(${size}, 50px`;
-
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
+  for (let i = 0; i < param; i++) {
+    for (let j = 0; j < param; j++) {
       const elem = createNewElement('div', 'field__cell');
       elem.setAttribute('id', `${[i] + '-' + [j]}`);
       field.append(elem);
     }
   }
 
-  for (let i = 0; i < size; i++) {
+  for (let i = 0; i < param; i++) {
     const elem = createNewElement('div', 'upper-hints__line');
-    elem.innerHTML = '1';
+    createHintElem(elem, rightHints[i]);
     upperHints.append(elem);
   }
 
-  for (let i = 0; i < size; i++) {
+  for (let i = 0; i < param; i++) {
     const elem = createNewElement('div', 'lower-hints__line');
+    createHintElem(elem, leftHints[i]);
     lowerHints.append(elem);
   }
 
@@ -53,16 +54,12 @@ function createGame(param) {
 
 function createOffensive() {
   const offensive = createNewElement('section', 'offensive');
-  // const btn = createNewElement('div', 'offensive__btn');
   const timer = createNewElement('div', 'offensive__timer');
+
   main.append(offensive);
-  // offensive.append(btn);
-  // btn.textContent = 'На главную';
   offensive.append(timer);
   timer.textContent = '0:00:00';
   setTimer(timer);
-
-  // btn.addEventListener('click', btnClick);
 }
 
 function setTimer(param) {
@@ -76,11 +73,64 @@ function setTimer(param) {
     min = min < 10 ? '0' + min : min;
     sec = sec < 10 ? '0' + sec : sec;
     param.textContent = '0:' + min + ':' + sec;
-
-    // if (currentTimer >= 60) {
-    //   currentTimer = 0;
-    // }
   }, 1000);
+}
+
+function setLeftHints(param) {
+  const current = fourOne;
+  const result = [];
+  correctCount = 0;
+
+  for (let i = 0; i < param; i++) {
+    let sum = 0;
+    let arr = [];
+    for (let j = 0; j < param; j++) {
+      if (current[i][j] === 1) {
+        sum += 1;
+        correctCount += 1;
+      }
+      if (current[i][j] === 0 && sum > 0) {
+        arr.push(sum);
+        sum = 0;
+      }
+      if ([j + 1] == param && sum > 0) {
+        arr.push(sum);
+      }
+    }
+    result.push(arr);
+  }
+  return result;
+}
+function setUpperHints(param) {
+  const current = fourOne;
+  const result = [];
+
+  for (let i = 0; i < param; i++) {
+    let sum = 0;
+    let arr = [];
+    for (let j = 0; j < param; j++) {
+      if (current[j][i] === 1) {
+        sum += 1;
+      }
+      if (current[j][i] === 0 && sum > 0) {
+        arr.push(sum);
+        sum = 0;
+      }
+      if ([j + 1] == param && sum > 0) {
+        arr.push(sum);
+      }
+    }
+    result.push(arr);
+  }
+  return result;
+}
+
+function createHintElem(elem, arr) {
+  for (let i = 0; i < arr.length; i++) {
+    const newElem = createNewElement('p', 'line-text');
+    newElem.textContent = arr[i];
+    elem.append(newElem);
+  }
 }
 
 export { createGame };

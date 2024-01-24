@@ -3,7 +3,6 @@ import { createGame } from './game-create.js';
 import { createNewElement } from './helpers.js';
 import { createMenu } from './menu.js';
 
-// createGame(5);
 // createMenu();
 (function init() {
   const header = createNewElement('header', 'header');
@@ -28,5 +27,5 @@ import { createMenu } from './menu.js';
     createMenu();
   }
 })();
-
+// createGame(5);
 createMenu();

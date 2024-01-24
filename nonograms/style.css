@@ -253,7 +253,16 @@ table {
 .upper-hints__line {
   background: rgb(141, 139, 139);
   border: 1px solid rgb(192, 190, 190);
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  gap: 3px;
+  padding-bottom: 5px;
+}
+
+.line-text {
+  font-size: 15px;
 }
 
 .lower-hints {
@@ -266,7 +275,11 @@ table {
 .lower-hints__line {
   background: rgb(141, 139, 139);
   border: 1px solid rgb(192, 190, 190);
-  box-sizing: border-box;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-right: 5px;
+  gap: 8px;
 }
 
 .menu {
