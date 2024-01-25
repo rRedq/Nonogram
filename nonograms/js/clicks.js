@@ -1,9 +1,9 @@
-import { firstOne } from './assets.js';
+import { currentGame } from './game-create.js';
 let count = 0;
 
 function fieldLeftClick(e) {
   const value = e.target;
-  const arr = firstOne;
+  const arr = currentGame;
 
   if (value.classList.contains('field__cell')) {
     const col = value.getAttribute('id').split('-')[0];
@@ -30,7 +30,7 @@ function fieldRightClick(e) {
   e.preventDefault();
   console.log(e.target);
   const value = e.target;
-  const arr = firstOne;
+  const arr = currentGame;
 
   if (value.classList.contains('field__cell')) {
     const col = value.getAttribute('id').split('-')[0];

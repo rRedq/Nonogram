@@ -169,6 +169,9 @@ table {
   font-family: "Dell";
   font-size: 60px;
 }
+.header__logo:hover {
+  cursor: pointer;
+}
 .header__container {
   display: flex;
 }
@@ -248,7 +251,6 @@ table {
   margin: 0 auto;
   display: grid;
   font-family: "Ashar";
-  grid-template-rows: 70px;
 }
 .upper-hints__line {
   background: rgb(141, 139, 139);
@@ -269,8 +271,6 @@ table {
   grid-area: third;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 70px;
-  grid-template-rows: repeat(5, 50px);
 }
 .lower-hints__line {
   background: rgb(141, 139, 139);
@@ -314,6 +314,43 @@ table {
   margin-bottom: 20px;
 }
 .menu__level:hover {
+  color: #bcab97;
+  -webkit-text-decoration: #282b37 underline;
+          text-decoration: #282b37 underline;
+  cursor: pointer;
+}
+
+.level {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px);
+  font-size: 50px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.level__options {
+  text-align: center;
+  padding: 40px;
+  border-radius: 30px;
+  background: #4e4a47;
+}
+.level__headline {
+  color: #d7ced6;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+.level__desc {
+  color: #bcab97;
+  -webkit-text-decoration: #282b37 underline;
+          text-decoration: #282b37 underline;
+}
+.level__field {
+  color: #818189;
+  margin-bottom: 20px;
+}
+.level__field:hover {
   color: #bcab97;
   -webkit-text-decoration: #282b37 underline;
           text-decoration: #282b37 underline;

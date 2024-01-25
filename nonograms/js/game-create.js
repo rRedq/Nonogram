@@ -1,21 +1,22 @@
 import { createNewElement } from './helpers.js';
-import { firstOne, secondOne, fourOne } from './assets.js';
+import { templates } from './assets.js';
 import { fieldLeftClick, fieldRightClick } from './clicks.js';
-import { createMenu } from './menu.js';
 
 let main = '';
 let currentTimer = 0;
 let interval = null;
 let correctCount = 0;
+let currentGame = [];
 
-function createGame(param) {
+function createGame(param, id) {
   main = createNewElement('main', 'main');
+  currentGame = templates[param][id].matrix;
   const field = createNewElement('div', 'field');
   const game = createNewElement('section', 'game');
   const upperHints = createNewElement('div', 'upper-hints');
   const lowerHints = createNewElement('div', 'lower-hints');
-  const leftHints = setLeftHints(param);
-  const rightHints = setUpperHints(param);
+  const leftHints = setLeftHints(param, currentGame);
+  const rightHints = setUpperHints(param, currentGame);
 
   document.body.append(main);
   createOffensive();
@@ -27,6 +28,9 @@ function createGame(param) {
   field.style.gridTemplateColumns = `repeat(${param}, 50px`;
   field.style.gridTemplateRows = `repeat(${param}, 50px`;
   upperHints.style.gridTemplateColumns = `repeat(${param}, 50px`;
+  upperHints.style.gridTemplateRows = '70px';
+  lowerHints.style.gridTemplateColumns = '70px';
+  lowerHints.style.gridTemplateRows = `repeat(${param}, 50px`;
 
   for (let i = 0; i < param; i++) {
     for (let j = 0; j < param; j++) {
@@ -76,8 +80,9 @@ function setTimer(param) {
   }, 1000);
 }
 
-function setLeftHints(param) {
-  const current = fourOne;
+function setLeftHints(param, matrix) {
+  const current = matrix;
+  console.log(matrix);
   const result = [];
   correctCount = 0;
 
@@ -101,8 +106,8 @@ function setLeftHints(param) {
   }
   return result;
 }
-function setUpperHints(param) {
-  const current = fourOne;
+function setUpperHints(param, matrix) {
+  const current = matrix;
   const result = [];
 
   for (let i = 0; i < param; i++) {
@@ -133,4 +138,4 @@ function createHintElem(elem, arr) {
   }
 }
 
-export { createGame };
+export { createGame, currentGame };

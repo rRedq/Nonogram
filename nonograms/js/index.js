@@ -1,4 +1,3 @@
-import { fieldLeftClick, fieldRightClick } from './clicks.js';
 import { createGame } from './game-create.js';
 import { createNewElement } from './helpers.js';
 import { createMenu } from './menu.js';

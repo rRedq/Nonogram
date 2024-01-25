@@ -1,5 +1,6 @@
 import { createNewElement } from './helpers.js';
 import { createGame } from './game-create.js';
+import { levelChoose } from './level.js';
 
 function createMenu() {
   const menu = createNewElement('div', 'menu');
@@ -39,7 +40,7 @@ function createMenu() {
 
 function closeMenu(elem, size) {
   elem.remove();
-  createGame(size);
+  levelChoose(size);
 }
 
 export { createMenu };
