@@ -27,6 +27,6 @@ import { createWinModal } from './modal.js';
     createMenu();
   }
 })();
-// createGame(5);
-createMenu();
+createGame(15, 1);
+// createMenu();
 // createWinModal();

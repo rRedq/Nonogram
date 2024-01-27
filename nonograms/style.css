@@ -196,32 +196,55 @@ table {
   color: #0c1015;
   background: #bcab97;
   border-radius: 20px;
+  border: 1px solid #0c1015;
 }
 .header__btn:hover {
   color: #d7ced6;
   background: #818189;
+  border: 1px solid #d7ced6;
   cursor: pointer;
 }
 
 .offensive {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 70vw;
+  justify-content: space-between;
+  max-width: 820px;
   height: 70px;
   margin: 0 auto;
+  margin-top: 10px;
 }
 .offensive__timer {
   font-family: "Dell";
   font-size: 25px;
-  color: #282b37;
+  color: #4e4a47;
+  margin: 25px 0 0 80px;
+}
+.offensive__btns {
+  display: flex;
+  gap: 10px;
+}
+.offensive__btn {
+  font-size: 22px;
+  padding: 15px 15px 37px 15px;
+  text-align: center;
+  color: #0c1015;
+  background: #bcab97;
+  border-radius: 20px;
+  margin: 10px 0;
+  border: 1px solid #0c1015;
+}
+.offensive__btn:hover {
+  color: #d7ced6;
+  background: #4e4a47;
+  border: 1px solid #d7ced6;
+  cursor: pointer;
 }
 
 .game {
   display: grid;
   grid-template-areas: "first second" "third four";
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .field {

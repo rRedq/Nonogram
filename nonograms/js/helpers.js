@@ -25,7 +25,18 @@ function timerFormatting(param) {
   let min = parseInt(param / 60, 10);
   min = min < 10 ? '0' + min : min;
   sec = sec < 10 ? '0' + sec : sec;
-  return '0:' + min + ':' + sec;
+  return min + ':' + sec;
 }
 
-export { createNewElement, randomNumber, randomHint, timerFormatting };
+function cleanSibling() {
+  const elem = document.querySelector('header');
+  elem.nextSibling.remove();
+}
+
+export {
+  createNewElement,
+  randomNumber,
+  randomHint,
+  timerFormatting,
+  cleanSibling,
+};

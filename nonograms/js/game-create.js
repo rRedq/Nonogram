@@ -1,4 +1,4 @@
-import { createNewElement, timerFormatting } from './helpers.js';
+import { createNewElement, timerFormatting, cleanSibling } from './helpers.js';
 import { templates } from './assets.js';
 import { fieldLeftClick, fieldRightClick } from './clicks.js';
 
@@ -19,7 +19,7 @@ function createGame(param, id) {
   const rightHints = setUpperHints(param, currentGame);
 
   document.body.append(main);
-  createOffensive();
+  createOffensive(param, id);
   main.append(game);
   game.append(upperHints);
   game.append(field);
@@ -56,14 +56,34 @@ function createGame(param, id) {
   field.addEventListener('contextmenu', fieldRightClick);
 }
 
-function createOffensive() {
+function createOffensive(param, id) {
   const offensive = createNewElement('section', 'offensive');
   const timer = createNewElement('div', 'offensive__timer');
+  const btns = createNewElement('div', 'offensive__btns');
+  const resetBtn = createNewElement('div', 'offensive__btn');
+  const solutionBtn = createNewElement('div', 'offensive__btn');
+  const saveBtn = createNewElement('div', 'offensive__btn');
 
   main.append(offensive);
   offensive.append(timer);
-  timer.textContent = '0:00:00';
+  offensive.append(btns);
+  btns.append(resetBtn);
+  btns.append(solutionBtn);
+  btns.append(saveBtn);
+  resetBtn.textContent = 'Очистить';
+  solutionBtn.textContent = 'Решение';
+  saveBtn.textContent = 'Сохранить';
+  timer.textContent = '00:00';
   setTimer(timer);
+
+  resetBtn.addEventListener('click', (e) => {
+    clearGame(param, id);
+  });
+}
+
+function clearGame(param, id) {
+  cleanSibling();
+  createGame(param, id);
 }
 
 function setTimer(param) {
@@ -78,7 +98,6 @@ function setTimer(param) {
 
 function setLeftHints(param, matrix) {
   const current = matrix;
-  console.log(matrix);
   const result = [];
   correctCount = 0;
 
