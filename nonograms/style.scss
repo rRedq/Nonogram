@@ -157,6 +157,15 @@ $third-4: #4a4e69;
 $third-3: #9a8c98;
 $third-2: #c9ada7;
 $third-1: #f2e9e4;
+%label {
+  color: $light-2;
+  margin-top: 10px;
+  text-decoration: $another-4 underline;
+}
+%text {
+  color: $light-1;
+  margin-top: 10px;
+}
 .body {
   font-family: 'Ashar';
   background: rgba(88, 76, 56, 0.585);
@@ -311,13 +320,15 @@ $third-1: #f2e9e4;
     background: $light-3;
   }
   &__label {
-    color: $light-2;
-    margin-top: 10px;
-    text-decoration: $another-4 underline;
+    @extend %label;
+    // color: $light-2;
+    // margin-top: 10px;
+    // text-decoration: $another-4 underline;
   }
   &__text {
-    color: $light-1;
-    margin-top: 10px;
+    @extend %text;
+    // color: $light-1;
+    // margin-top: 10px;
     margin-bottom: 60px;
   }
   &__level {
@@ -366,6 +377,78 @@ $third-1: #f2e9e4;
       cursor: pointer;
     }
   }
+}
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  background: rgb(188, 171, 151, 0.6);
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  font-size: 30px;
+  font-weight: bold;
+  // color: rgb(152, 149, 149);
+  gap: 40px;
+  width: 500px;
+  // height: 300px;
+  margin: 20px;
+  padding: 16px 14px 16px 16px;
+  border-radius: 40px;
+  background: $light-3;
+  z-index: 1;
+  transform: scale(0);
+  transition: all 0.5s;
+  // box-shadow:
+  //   inset -8px 0 8px rgba(0, 0, 0, 0.15),
+  //   inset 0 -8px 8px rgba(0, 0, 0, 0.25),
+  //   0 0 50px 2px rgba(223, 240, 242, 0.482),
+  //   10px 20px 25px rgba(0, 0, 0, 0.4);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
+  &__label {
+    @extend %label;
+    margin-bottom: 20px;
+  }
+  &__text {
+    @extend %text;
+    margin-bottom: 20px;
+  }
+  &__btn {
+    width: 200px;
+    // display: inline;
+    font-size: 22px;
+    padding: 15px;
+    // margin-right: 50px;
+    text-align: center;
+    color: $light-5;
+    background: $light-2;
+    border-radius: 20px;
+    margin: 10px 0;
+    &:hover {
+      color: $light-1;
+      background: $another-2;
+      cursor: pointer;
+    }
+  }
+}
+.modal-active {
+  transform: scale(1);
 }
 @media (hover: hover) {
   .menu {

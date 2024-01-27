@@ -150,6 +150,18 @@ table {
   font-weight: normal;
   font-style: normal;
 }
+.modal__label, .menu__label {
+  color: #bcab97;
+  margin-top: 10px;
+  -webkit-text-decoration: #282b37 underline;
+          text-decoration: #282b37 underline;
+}
+
+.modal__text, .menu__text {
+  color: #d7ced6;
+  margin-top: 10px;
+}
+
 .body {
   font-family: "Ashar";
   background: rgba(88, 76, 56, 0.585);
@@ -298,15 +310,7 @@ table {
   border-radius: 30px;
   background: #4e4a47;
 }
-.menu__label {
-  color: #bcab97;
-  margin-top: 10px;
-  -webkit-text-decoration: #282b37 underline;
-          text-decoration: #282b37 underline;
-}
 .menu__text {
-  color: #d7ced6;
-  margin-top: 10px;
   margin-bottom: 60px;
 }
 .menu__level {
@@ -355,4 +359,66 @@ table {
   -webkit-text-decoration: #282b37 underline;
           text-decoration: #282b37 underline;
   cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  background: rgba(188, 171, 151, 0.6);
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  font-weight: bold;
+  gap: 40px;
+  width: 500px;
+  margin: 20px;
+  padding: 16px 14px 16px 16px;
+  border-radius: 40px;
+  background: #4e4a47;
+  z-index: 1;
+  transform: scale(0);
+  transition: all 0.5s;
+}
+.modal__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.modal__label {
+  margin-bottom: 20px;
+}
+.modal__text {
+  margin-bottom: 20px;
+}
+.modal__btn {
+  width: 200px;
+  font-size: 22px;
+  padding: 15px;
+  text-align: center;
+  color: #0c1015;
+  background: #bcab97;
+  border-radius: 20px;
+  margin: 10px 0;
+}
+.modal__btn:hover {
+  color: #d7ced6;
+  background: #818189;
+  cursor: pointer;
+}
+
+.modal-active {
+  transform: scale(1);
 }/*# sourceMappingURL=style.css.map */

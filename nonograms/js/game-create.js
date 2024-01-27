@@ -1,4 +1,4 @@
-import { createNewElement } from './helpers.js';
+import { createNewElement, timerFormatting } from './helpers.js';
 import { templates } from './assets.js';
 import { fieldLeftClick, fieldRightClick } from './clicks.js';
 
@@ -72,11 +72,7 @@ function setTimer(param) {
 
   interval = setInterval(() => {
     currentTimer += 1;
-    let sec = parseInt(currentTimer % 60, 10);
-    let min = parseInt(currentTimer / 60, 10);
-    min = min < 10 ? '0' + min : min;
-    sec = sec < 10 ? '0' + sec : sec;
-    param.textContent = '0:' + min + ':' + sec;
+    param.textContent = timerFormatting(currentTimer);
   }, 1000);
 }
 
@@ -138,4 +134,4 @@ function createHintElem(elem, arr) {
   }
 }
 
-export { createGame, currentGame };
+export { createGame, currentGame, correctCount, currentTimer };

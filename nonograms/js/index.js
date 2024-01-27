@@ -1,6 +1,7 @@
 import { createGame } from './game-create.js';
 import { createNewElement } from './helpers.js';
 import { createMenu } from './menu.js';
+import { createWinModal } from './modal.js';
 
 // createMenu();
 (function init() {
@@ -28,3 +29,4 @@ import { createMenu } from './menu.js';
 })();
 // createGame(5);
 createMenu();
+// createWinModal();

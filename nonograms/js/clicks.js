@@ -1,4 +1,5 @@
-import { currentGame } from './game-create.js';
+import { currentGame, correctCount, currentTimer } from './game-create.js';
+import { createWinModal } from './modal.js';
 let count = 0;
 
 function fieldLeftClick(e) {
@@ -25,10 +26,14 @@ function fieldLeftClick(e) {
       value.classList.add('fill');
     }
   }
+
+  if (count === correctCount) {
+    createWinModal();
+    count = 0;
+  }
 }
 function fieldRightClick(e) {
   e.preventDefault();
-  console.log(e.target);
   const value = e.target;
   const arr = currentGame;
 
