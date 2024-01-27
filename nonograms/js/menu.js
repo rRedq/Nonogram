@@ -1,8 +1,9 @@
 import { createNewElement } from './helpers.js';
-import { createGame } from './game-create.js';
+import { createGame, setFlag } from './game-create.js';
 import { levelChoose } from './level.js';
 
 function createMenu() {
+  setFlag(false);
   const menu = createNewElement('div', 'menu');
   const menuStart = createNewElement('div', 'menu__start');
   const menuFirstP = createNewElement('div', 'menu__label');

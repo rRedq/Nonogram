@@ -1,16 +1,26 @@
-import { createNewElement, timerFormatting, cleanSibling } from './helpers.js';
+import {
+  createNewElement,
+  timerFormatting,
+  cleanSibling,
+  changeCells,
+} from './helpers.js';
 import { templates } from './assets.js';
-import { fieldLeftClick, fieldRightClick } from './clicks.js';
+import { fieldLeftClick, fieldRightClick, setCount } from './clicks.js';
 
 let main = '';
 let currentTimer = 0;
 let interval = null;
 let correctCount = 0;
 let currentGame = [];
+let gameFlag = 0;
 
 function createGame(param, id) {
-  main = createNewElement('main', 'main');
+  setCount(0);
+  currentTimer = 0;
+  gameFlag = 0;
   currentGame = templates[param][id].matrix;
+
+  main = createNewElement('main', 'main');
   const field = createNewElement('div', 'field');
   const game = createNewElement('section', 'game');
   const upperHints = createNewElement('div', 'upper-hints');
@@ -74,26 +84,45 @@ function createOffensive(param, id) {
   solutionBtn.textContent = 'Решение';
   saveBtn.textContent = 'Сохранить';
   timer.textContent = '00:00';
-  setTimer(timer);
 
   resetBtn.addEventListener('click', (e) => {
     clearGame(param, id);
   });
+  solutionBtn.addEventListener('click', openSolution);
+}
+
+function openSolution() {
+  const elems = document.querySelectorAll('.field__cell');
+  changeCells(currentGame, elems);
+  setFlag(false);
 }
 
 function clearGame(param, id) {
+  setFlag(false);
   cleanSibling();
   createGame(param, id);
 }
 
-function setTimer(param) {
-  currentTimer = 0;
+function setFlag(flag) {
+  gameFlag = flag;
+  console.log(gameFlag);
+  setTimer(currentTimer);
+}
+
+function setTimer(timer) {
+  const elem = document.querySelector('.offensive__timer');
+  currentTimer = timer;
   clearInterval(interval);
 
-  interval = setInterval(() => {
-    currentTimer += 1;
-    param.textContent = timerFormatting(currentTimer);
-  }, 1000);
+  if (gameFlag === true) {
+    interval = setInterval(() => {
+      currentTimer += 1;
+      console.log('timer = ' + currentTimer);
+      console.log(elem);
+
+      elem.textContent = timerFormatting(currentTimer);
+    }, 1000);
+  }
 }
 
 function setLeftHints(param, matrix) {
@@ -153,4 +182,12 @@ function createHintElem(elem, arr) {
   }
 }
 
-export { createGame, currentGame, correctCount, currentTimer };
+export {
+  createGame,
+  currentGame,
+  correctCount,
+  currentTimer,
+  gameFlag,
+  setTimer,
+  setFlag,
+};

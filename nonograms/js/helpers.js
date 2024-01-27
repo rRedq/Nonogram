@@ -33,10 +33,25 @@ function cleanSibling() {
   elem.nextSibling.remove();
 }
 
+function changeCells(matrix, cells) {
+  for (const value of cells) {
+    const col = value.getAttribute('id').split('-')[0];
+    const row = value.getAttribute('id').split('-')[1];
+
+    if (matrix[col][row] === 1) {
+      value.classList.add('fill');
+    } else if (matrix[col][row] === 0) {
+      value.classList.remove('fill');
+      value.classList.remove('cross');
+    }
+  }
+}
+
 export {
   createNewElement,
   randomNumber,
   randomHint,
   timerFormatting,
   cleanSibling,
+  changeCells,
 };

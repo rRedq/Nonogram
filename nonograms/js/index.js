@@ -1,5 +1,5 @@
 import { createGame } from './game-create.js';
-import { createNewElement } from './helpers.js';
+import { createNewElement, cleanSibling } from './helpers.js';
 import { createMenu } from './menu.js';
 import { createWinModal } from './modal.js';
 
@@ -23,10 +23,10 @@ import { createWinModal } from './modal.js';
   logo.addEventListener('click', btnClick);
 
   function btnClick() {
-    header.nextSibling.remove();
+    cleanSibling();
     createMenu();
   }
 })();
-createGame(15, 1);
+createGame(5, 0);
 // createMenu();
 // createWinModal();
