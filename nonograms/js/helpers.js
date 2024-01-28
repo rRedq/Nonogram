@@ -44,6 +44,8 @@ function changeCells(matrix, cells) {
     } else if (matrix[col][row] === 0) {
       value.classList.remove('fill');
       value.classList.remove('cross');
+    } else {
+      value.classList.add('cross');
     }
   }
 }

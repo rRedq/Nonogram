@@ -5,7 +5,12 @@ import {
   changeCells,
 } from './helpers.js';
 import { templates } from './assets.js';
-import { fieldLeftClick, fieldRightClick, setCount } from './clicks.js';
+import {
+  fieldLeftClick,
+  fieldRightClick,
+  setCount,
+  saveGame,
+} from './clicks.js';
 
 let main = '';
 let currentTimer = 0;
@@ -15,7 +20,7 @@ let currentGame = [];
 let gameFlag = 0;
 
 function createGame(param, id) {
-  setCount(0);
+  setCount(0, 0);
   currentTimer = 0;
   gameFlag = 0;
   currentGame = templates[param][id].matrix;
@@ -93,6 +98,28 @@ function createOffensive(param, id) {
     clearGame(param, id);
   });
   solutionBtn.addEventListener('click', openSolution);
+  saveBtn.addEventListener('click', () => {
+    saveGame(param, id);
+  });
+}
+
+function continueSavedGame() {
+  const storedMatrix = JSON.parse(localStorage.getItem('redq-matrix'));
+  const storedOpenCount = localStorage.getItem('redq-openCount');
+  const storedCount = localStorage.getItem('redq-count');
+  const storedParam = localStorage.getItem('redq-param');
+  const storedId = localStorage.getItem('redq-id');
+  const storedTimer = localStorage.getItem('redq-timer');
+
+  cleanSibling();
+  createGame(storedParam, storedId);
+
+  const elems = document.querySelectorAll('.field__cell');
+  const timer = document.querySelector('.offensive__timer');
+  timer.textContent = timerFormatting(storedTimer);
+  changeCells(storedMatrix, elems);
+  setCount(storedCount, storedOpenCount);
+  setTimer(storedTimer);
 }
 
 function openSolution() {
@@ -115,14 +142,14 @@ function setFlag(flag) {
 
 function setTimer(timer) {
   const elem = document.querySelector('.offensive__timer');
-  currentTimer = timer;
+  currentTimer = Number(timer);
   clearInterval(interval);
 
   if (gameFlag === true) {
     interval = setInterval(() => {
       currentTimer += 1;
-      console.log('timer = ' + currentTimer);
-      console.log(elem);
+      // console.log('timer = ' + currentTimer);
+      // console.log(elem);
 
       elem.textContent = timerFormatting(currentTimer);
     }, 1000);
@@ -194,4 +221,5 @@ export {
   gameFlag,
   setTimer,
   setFlag,
+  continueSavedGame,
 };

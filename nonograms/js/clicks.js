@@ -50,10 +50,11 @@ function fieldLeftClick(e) {
 
   if (count === correctCount && openCount === count) {
     createWinModal();
-    setCount();
+    // setCount();
     setFlag(false);
   }
 }
+
 function fieldRightClick(e) {
   e.preventDefault();
 
@@ -88,18 +89,47 @@ function fieldRightClick(e) {
   }
 
   console.log('openC = ' + openCount);
-  console.log('rightCount = ' + count);
+  console.log('count = ' + count);
 
   if (count === correctCount && openCount === count) {
     createWinModal();
-    setCount();
+    // setCount();
     setFlag(false);
   }
 }
 
-function setCount(param) {
-  count = param;
-  openCount = param;
+function setCount(param, param2) {
+  count = Number(param);
+  openCount = Number(param2);
 }
 
-export { fieldLeftClick, fieldRightClick, setCount };
+function saveGame(param, id) {
+  const cells = document.querySelectorAll('.field__cell');
+  const newMatrix = JSON.parse(JSON.stringify(currentGame));
+
+  for (const value of cells) {
+    const col = value.getAttribute('id').split('-')[0];
+    const row = value.getAttribute('id').split('-')[1];
+
+    if (value.classList.contains('fill')) {
+      newMatrix[col][row] = 1;
+    } else if (value.classList.contains('cross')) {
+      newMatrix[col][row] = 2;
+    } else {
+      newMatrix[col][row] = 0;
+    }
+  }
+  localStorage.setItem('redq-matrix', JSON.stringify(newMatrix));
+  localStorage.setItem('redq-openCount', openCount);
+  localStorage.setItem('redq-count', count);
+  localStorage.setItem('redq-param', param);
+  localStorage.setItem('redq-id', id);
+  localStorage.setItem('redq-timer', currentTimer);
+
+  // delete localStorage.removeItem('redq-matrix');
+  // const storedMatrix = JSON.parse(localStorage.getItem('redq-matrix'));
+  // const storedOpenCount = localStorage.getItem('redq-openCount');
+  // const storedCount = localStorage.getItem('redq-count');
+}
+
+export { fieldLeftClick, fieldRightClick, setCount, saveGame };

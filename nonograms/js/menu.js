@@ -1,10 +1,11 @@
 import { createNewElement, cleanSibling, randomNumber } from './helpers.js';
-import { createGame, setFlag } from './game-create.js';
+import { createGame, setFlag, continueSavedGame } from './game-create.js';
 import { levelChoose } from './level.js';
 
 function createMenu() {
   setFlag(false);
   const menu = createNewElement('div', 'menu');
+  const cover = createNewElement('div', 'menu__cover');
   const menuStart = createNewElement('div', 'menu__start');
   const menuFirstP = createNewElement('div', 'menu__label');
   const menuSecondP = createNewElement('div', 'menu__text');
@@ -13,7 +14,8 @@ function createMenu() {
   const levelThird = createNewElement('div', 'menu__level three');
   const randomGame = createNewElement('div', 'menu__level');
   document.body.append(menu);
-  menu.append(menuStart);
+  menu.append(cover);
+  cover.append(menuStart);
   menuStart.append(menuFirstP);
   menuStart.append(menuSecondP);
   menuStart.append(levelFirst);
@@ -26,6 +28,22 @@ function createMenu() {
   levelSecond.textContent = 'Уровень червяка';
   levelThird.textContent = 'Уровень хакера';
   randomGame.textContent = 'Рандомная игра!';
+
+  const storedMatrix = JSON.parse(localStorage.getItem('redq-matrix'));
+
+  if (storedMatrix) {
+    const continueGame = createNewElement('div', 'menu__continue');
+    const continueBtn = createNewElement('div', 'menu__level');
+    const text = createNewElement('div', 'menu__label');
+    menuStart.before(continueGame);
+    continueGame.append(text);
+    continueGame.append(continueBtn);
+
+    text.textContent = 'Продолжить игру';
+    continueBtn.textContent = 'Продолжить сохраненную игру';
+
+    continueBtn.addEventListener('click', continueSavedGame);
+  }
 
   levelFirst.addEventListener('click', setLevel);
   levelSecond.addEventListener('click', setLevel);
