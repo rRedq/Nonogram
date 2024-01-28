@@ -35,18 +35,22 @@ function createGame(param, id) {
   game.append(field);
   game.append(lowerHints);
 
-  field.style.gridTemplateColumns = `repeat(${param}, 50px`;
-  field.style.gridTemplateRows = `repeat(${param}, 50px`;
+  // field.style.gridTemplateColumns = `repeat(${param}, 50px`;
+  // field.style.gridTemplateRows = `repeat(${param}, 50px`;
   upperHints.style.gridTemplateColumns = `repeat(${param}, 50px`;
   upperHints.style.gridTemplateRows = '70px';
   lowerHints.style.gridTemplateColumns = '70px';
   lowerHints.style.gridTemplateRows = `repeat(${param}, 50px`;
 
   for (let i = 0; i < param; i++) {
+    const parent = createNewElement('div', 'field__row');
+    parent.style.width = `${param * 50}px`;
+    parent.style.height = `50px`;
+    field.append(parent);
     for (let j = 0; j < param; j++) {
       const elem = createNewElement('div', 'field__cell');
       elem.setAttribute('id', `${[i] + '-' + [j]}`);
-      field.append(elem);
+      parent.append(elem);
     }
   }
 

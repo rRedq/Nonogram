@@ -20,6 +20,7 @@ function randomHint(len) {
   localStorage.setItem('redqCurrentHint', curr);
   return curr;
 }
+
 function timerFormatting(param) {
   let sec = parseInt(param % 60, 10);
   let min = parseInt(param / 60, 10);

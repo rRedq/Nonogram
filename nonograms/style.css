@@ -249,13 +249,33 @@ table {
 
 .field {
   grid-area: four;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
+}
+.field__row {
+  display: flex;
+  box-sizing: border-box;
+  border-bottom: 2px solid rgb(192, 190, 190);
+}
+.field__row:nth-child(5n) {
+  border-bottom: 2px solid black;
+}
+.field__row:nth-child(1) {
+  border-top: 2px solid black;
 }
 .field__cell {
   background: rgb(96, 93, 93);
-  border: 1px solid rgb(192, 190, 190);
+  border-right: 2px solid rgb(192, 190, 190);
   box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+.field__cell:nth-child(5n) {
+  border-right: 2px solid black;
+}
+.field__cell:nth-child(1) {
+  border-left: 2px solid black;
 }
 
 .fill {
