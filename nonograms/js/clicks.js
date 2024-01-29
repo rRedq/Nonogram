@@ -45,8 +45,10 @@ function fieldLeftClick(e) {
     }
   }
 
-  console.log('openC = ' + openCount);
-  console.log('rightCount = ' + count);
+  // console.log('openC = ' + openCount);
+  // console.log('rightCount = ' + count);
+  console.log(currentTimer);
+  console.log(currentGame);
 
   if (count === correctCount && openCount === count) {
     createWinModal();
@@ -103,7 +105,9 @@ function setCount(param, param2) {
   openCount = Number(param2);
 }
 
-function saveGame(param, id) {
+function saveGame() {
+  const id = localStorage.getItem('currentGame');
+  const param = localStorage.getItem('currentField');
   const cells = document.querySelectorAll('.field__cell');
   const newMatrix = JSON.parse(JSON.stringify(currentGame));
 
@@ -125,11 +129,6 @@ function saveGame(param, id) {
   localStorage.setItem('redq-param', param);
   localStorage.setItem('redq-id', id);
   localStorage.setItem('redq-timer', currentTimer);
-
-  // delete localStorage.removeItem('redq-matrix');
-  // const storedMatrix = JSON.parse(localStorage.getItem('redq-matrix'));
-  // const storedOpenCount = localStorage.getItem('redq-openCount');
-  // const storedCount = localStorage.getItem('redq-count');
 }
 
 export { fieldLeftClick, fieldRightClick, setCount, saveGame };

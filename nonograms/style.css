@@ -150,7 +150,7 @@ table {
   font-weight: normal;
   font-style: normal;
 }
-.modal__label, .menu__label {
+.modal__cover span, .modal__label, .menu__label {
   color: #bcab97;
   margin-top: 10px;
   -webkit-text-decoration: #282b37 underline;
@@ -483,6 +483,18 @@ table {
   color: #d7ced6;
   background: #818189;
   cursor: pointer;
+}
+.modal__cover {
+  display: flex;
+  gap: 20px;
+}
+.modal__img {
+  max-width: 150px;
+}
+.modal__img img {
+  -o-object-fit: fill;
+     object-fit: fill;
+  width: 100%;
 }
 
 .modal-active {

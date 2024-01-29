@@ -40,6 +40,9 @@ function createGame(param, id) {
   game.append(field);
   game.append(lowerHints);
 
+  localStorage.currentField = param;
+  localStorage.currentGame = id;
+
   // field.style.gridTemplateColumns = `repeat(${param}, 50px`;
   // field.style.gridTemplateRows = `repeat(${param}, 50px`;
   upperHints.style.gridTemplateColumns = `repeat(${param}, 50px`;
@@ -94,13 +97,9 @@ function createOffensive(param, id) {
   saveBtn.textContent = 'Сохранить';
   timer.textContent = '00:00';
 
-  resetBtn.addEventListener('click', (e) => {
-    clearGame(param, id);
-  });
+  resetBtn.addEventListener('click', clearGame);
   solutionBtn.addEventListener('click', openSolution);
-  saveBtn.addEventListener('click', () => {
-    saveGame(param, id);
-  });
+  saveBtn.addEventListener('click', saveGame);
 }
 
 function continueSavedGame() {
@@ -128,7 +127,9 @@ function openSolution() {
   setFlag(false);
 }
 
-function clearGame(param, id) {
+function clearGame() {
+  const id = localStorage.getItem('currentGame');
+  const param = localStorage.getItem('currentField');
   setFlag(false);
   cleanSibling();
   createGame(param, id);

@@ -520,6 +520,24 @@ $third-1: #f2e9e4;
       cursor: pointer;
     }
   }
+  &__cover {
+    display: flex;
+    gap: 20px;
+
+    span {
+      @extend %label;
+    }
+    &-left {
+      // width: 50px;
+    }
+  }
+  &__img {
+    max-width: 150px;
+    img {
+      object-fit: fill;
+      width: 100%;
+    }
+  }
 }
 .modal-active {
   transform: scale(1);

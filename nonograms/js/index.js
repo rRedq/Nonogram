@@ -1,7 +1,7 @@
 import { createGame } from './game-create.js';
 import { createNewElement, cleanSibling } from './helpers.js';
 import { createMenu } from './menu.js';
-import { createWinModal } from './modal.js';
+import { createAchieveModal } from './modal.js';
 
 // createMenu();
 (function init() {
@@ -21,12 +21,13 @@ import { createWinModal } from './modal.js';
 
   btnBack.addEventListener('click', btnClick);
   logo.addEventListener('click', btnClick);
+  btnAchieve.addEventListener('click', createAchieveModal);
 
   function btnClick() {
     cleanSibling();
     createMenu();
   }
 })();
-// createGame(10, 0);
-createMenu();
+createGame(5, 2);
+// createMenu();
 // createWinModal();

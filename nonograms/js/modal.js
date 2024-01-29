@@ -1,6 +1,7 @@
-import { createNewElement, timerFormatting } from './helpers.js';
+import { createNewElement, timerFormatting, cleanSibling } from './helpers.js';
 import { currentTimer } from './game-create.js';
 import { createMenu } from './menu.js';
+import { templates } from './assets.js';
 
 function createOverlay() {
   const overlay = createNewElement('div', 'overlay');
@@ -10,6 +11,10 @@ function createOverlay() {
   overlay.append(modal);
   overlay.append(modal);
   modal.append(container);
+
+  setTimeout(() => {
+    modal.classList.add('modal-active');
+  }, 10);
 
   return { overlay, modal, container };
 }
@@ -35,18 +40,96 @@ function createWinModal() {
   menuBtn.textContent = 'Выбрать новую игру';
   closeBtn.textContent = 'Закрыть';
 
-  setTimeout(() => {
-    modal.classList.add('modal-active');
-  }, 10);
+  setAchieve();
+
+  // setTimeout(() => {
+  //   modal.classList.add('modal-active');
+  // }, 10);
 
   closeBtn.addEventListener('click', (e) => {
     closeModal(overlay, modal);
   });
   menuBtn.addEventListener('click', (e) => {
-    const main = document.querySelector('main');
-    main.remove();
+    cleanSibling();
     closeModal(overlay, modal);
     createMenu();
+  });
+}
+
+function setAchieve() {
+  const id = localStorage.getItem('currentGame');
+  const param = localStorage.getItem('currentField');
+  const newGame = {
+    name: templates[param][id].name,
+    timer: currentTimer,
+    field: param,
+    picture: templates[param][id].picture,
+  };
+  const arr =
+    JSON.parse(localStorage.getItem('achieve')) !== null
+      ? JSON.parse(localStorage.getItem('achieve'))
+      : [];
+
+  if (arr.length > 4) {
+    arr.shift();
+    arr.push(newGame);
+  } else {
+    arr.push(newGame);
+  }
+
+  localStorage.setItem('achieve', JSON.stringify(arr));
+}
+
+function createAchieveModal() {
+  const arr =
+    JSON.parse(localStorage.getItem('achieve')) !== null
+      ? JSON.parse(localStorage.getItem('achieve'))
+      : [];
+
+  const { overlay, modal, container } = createOverlay();
+  const backBtn = createNewElement('div', 'modal__btn');
+  const label = createNewElement('div', 'modal__label');
+  label.textContent = 'Последние 5 результатов: ';
+  container.append(label);
+
+  if (arr.length > 0) {
+    arr.sort(function (a, b) {
+      return a.timer - b.timer;
+    });
+    for (let i = 0; i < arr.length; i++) {
+      const cover = createNewElement('div', 'modal__cover');
+      const coverLeft = createNewElement('div', 'modal__cover-left');
+      const coverRight = createNewElement('div', 'modal__cover-right');
+      const elem = createNewElement('div', 'modal__text');
+      const elem2 = createNewElement('div', 'modal__text');
+      const field = createNewElement('div', 'modal__text');
+      const img = createNewElement('img', 'modal__img');
+      elem.innerHTML = 'Нонограм: ' + `<span>${arr[i].name}</span>` + '';
+      elem2.innerHTML =
+        'Время: ' + `<span>${timerFormatting(arr[i].timer)}</span>` + '';
+      field.innerHTML =
+        'Поле: ' + `<span>${arr[i].field + 'x' + arr[i].field}</span>` + '';
+      img.src = `./img/${arr[i].picture}.png`;
+
+      container.append(cover);
+      cover.append(coverLeft);
+      cover.append(coverRight);
+      coverLeft.append(img);
+      coverRight.append(elem);
+      coverRight.append(field);
+      coverRight.append(elem2);
+    }
+  } else {
+    const elem = createNewElement('div', 'modal__text');
+    elem.textContent = 'На данный момент достижений нет';
+    container.append(elem);
+  }
+
+  container.append(backBtn);
+  backBtn.textContent = 'Закрыть';
+
+  backBtn.addEventListener('click', () => {
+    closeModal(overlay, modal);
   });
 }
 
@@ -59,4 +142,4 @@ function closeModal(param1, param2) {
   }, 300);
 }
 
-export { createWinModal };
+export { createWinModal, createAchieveModal };
