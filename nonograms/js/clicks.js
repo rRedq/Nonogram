@@ -8,8 +8,22 @@ import {
 } from './game-create.js';
 import { createWinModal } from './modal.js';
 
+// const id = localStorage.getItem('currentGame');
+
 let count = 0;
 let openCount = 0;
+let isSound =
+  localStorage.getItem('isSound') !== null
+    ? localStorage.getItem('isSound') === 'true'
+      ? true
+      : false
+    : true;
+// console.log(localStorage.getItem('isSound'));
+// console.log(isSound);
+// const arr =
+//     JSON.parse(localStorage.getItem('achieve')) !== null
+//       ? JSON.parse(localStorage.getItem('achieve'))
+//       : [];
 
 function fieldLeftClick(e) {
   if (gameFlag === false) {
@@ -18,7 +32,7 @@ function fieldLeftClick(e) {
     // setTimer(0, true);
     setFlag(true);
   }
-
+  console.log(isSound);
   const value = e.target;
   const arr = currentGame;
 
@@ -39,8 +53,10 @@ function fieldLeftClick(e) {
     if (value.classList.contains('fill')) {
       value.classList.remove('fill');
       openCount -= 1;
+      playSound('eraser');
     } else {
       value.classList.add('fill');
+      playSound('left-click');
       openCount += 1;
     }
   }
@@ -85,8 +101,10 @@ function fieldRightClick(e) {
 
     if (value.classList.contains('cross')) {
       value.classList.remove('cross');
+      playSound('eraser');
     } else {
       value.classList.add('cross');
+      playSound('right-click');
     }
   }
 
@@ -130,5 +148,30 @@ function saveGame() {
   localStorage.setItem('redq-id', id);
   localStorage.setItem('redq-timer', currentTimer);
 }
+function checkSound(e) {
+  if (e.target.className !== 'header__sound') {
+    isSound = true;
+  } else {
+    isSound = false;
+  }
 
-export { fieldLeftClick, fieldRightClick, setCount, saveGame };
+  e.target.classList.toggle('header__sound-off');
+  localStorage.setItem('isSound', isSound);
+}
+
+function playSound(value) {
+  console.log('isSound = ' + isSound);
+  if (!isSound) return false;
+  const audio = new Audio(`./sounds/${value}.wav`);
+  audio.play();
+}
+
+export {
+  fieldLeftClick,
+  fieldRightClick,
+  setCount,
+  saveGame,
+  checkSound,
+  playSound,
+  isSound,
+};

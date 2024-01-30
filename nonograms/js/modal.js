@@ -2,6 +2,7 @@ import { createNewElement, timerFormatting, cleanSibling } from './helpers.js';
 import { currentTimer } from './game-create.js';
 import { createMenu } from './menu.js';
 import { templates } from './assets.js';
+import { playSound } from './clicks.js';
 
 function createOverlay() {
   const overlay = createNewElement('div', 'overlay');
@@ -40,11 +41,8 @@ function createWinModal() {
   menuBtn.textContent = 'Выбрать новую игру';
   closeBtn.textContent = 'Закрыть';
 
+  playSound('win');
   setAchieve();
-
-  // setTimeout(() => {
-  //   modal.classList.add('modal-active');
-  // }, 10);
 
   closeBtn.addEventListener('click', (e) => {
     closeModal(overlay, modal);

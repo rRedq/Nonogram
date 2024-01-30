@@ -186,12 +186,30 @@ table {
 }
 .header__container {
   display: flex;
+  align-items: center;
+  padding-right: 50px;
+  gap: 30px;
+}
+.header__sound, .header__sound-off {
+  width: 45px;
+  height: 45px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.header__sound:hover, .header__sound-off:hover {
+  filter: drop-shadow(0px 0px 1px #d7ced6);
+  cursor: pointer;
+}
+.header__sound {
+  background-image: url("./img/sound-on.svg");
+}
+.header__sound-off {
+  background-image: url("./img/sound-off.png");
 }
 .header__btn {
   width: 130px;
   font-size: 22px;
   padding: 15px;
-  margin-right: 50px;
   text-align: center;
   color: #0c1015;
   background: #bcab97;
