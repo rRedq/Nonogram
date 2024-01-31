@@ -2,7 +2,7 @@ import { createGame } from './game-create.js';
 import { createNewElement, cleanSibling } from './helpers.js';
 import { createMenu } from './menu.js';
 import { createAchieveModal } from './modal.js';
-import { checkSound, isSound, checkTheme } from './clicks.js';
+import { checkSound, isSound, checkTheme, chooseGame } from './clicks.js';
 
 // createMenu();
 (function init() {
@@ -27,16 +27,11 @@ import { checkSound, isSound, checkTheme } from './clicks.js';
   isDark(theme);
   !isSound ? sound.classList.add('header__sound-off') : false;
 
-  btnBack.addEventListener('click', btnClick);
-  logo.addEventListener('click', btnClick);
+  btnBack.addEventListener('click', chooseGame);
+  logo.addEventListener('click', chooseGame);
   btnAchieve.addEventListener('click', createAchieveModal);
   sound.addEventListener('click', checkSound);
   theme.addEventListener('click', checkTheme);
-
-  function btnClick() {
-    cleanSibling();
-    createMenu();
-  }
 })();
 
 function isDark(elem) {
@@ -49,5 +44,5 @@ function isDark(elem) {
   }
 }
 
-createGame(15, 1);
+createGame(5, 2);
 // createMenu();

@@ -9,6 +9,7 @@ import {
 import { createWinModal } from './modal.js';
 import { changeCells, cleanSibling } from './helpers.js';
 import { createGame } from './game-create.js';
+import { createMenu } from './menu.js';
 
 let count = 0;
 let openCount = 0;
@@ -110,8 +111,8 @@ function setCount(param, param2) {
 function saveGame() {
   if (gameFlag === false) return false;
 
-  const id = localStorage.getItem('currentGame');
-  const param = localStorage.getItem('currentField');
+  const id = localStorage.getItem('redq-currentId');
+  const param = localStorage.getItem('redq-currentParam');
   const cells = document.querySelectorAll('.field__cell');
   const newMatrix = JSON.parse(JSON.stringify(currentGame));
 
@@ -161,8 +162,8 @@ function openSolution() {
 }
 
 function clearGame() {
-  const id = localStorage.getItem('currentGame');
-  const param = localStorage.getItem('currentField');
+  const id = localStorage.getItem('redq-currentId');
+  const param = localStorage.getItem('redq-currentParam');
   setFlag(false);
   cleanSibling();
   createGame(param, id);
@@ -182,6 +183,11 @@ function checkTheme(e) {
   }
 }
 
+function chooseGame() {
+  cleanSibling();
+  createMenu();
+}
+
 export {
   fieldLeftClick,
   fieldRightClick,
@@ -193,4 +199,5 @@ export {
   openSolution,
   clearGame,
   checkTheme,
+  chooseGame,
 };

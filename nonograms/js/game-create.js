@@ -12,6 +12,7 @@ import {
   saveGame,
   openSolution,
   clearGame,
+  chooseGame,
 } from './clicks.js';
 
 let main = '';
@@ -20,6 +21,7 @@ let interval = null;
 let correctCount = 0;
 let currentGame = [];
 let gameFlag = 0;
+let isAdaptive = 'normal';
 
 function createGame(param, id) {
   setCount(0, 0);
@@ -43,19 +45,9 @@ function createGame(param, id) {
   game.append(lowerHints);
   createOffensiveBottom();
 
-  // //
-  // const btns = createNewElement('section', 'btns');
-  // const btn1 = createNewElement('div', 'btns__btn disable');
-  // main.append(btns);
-  // btns.append(btn1);
-  // btn1.textContent = 'Помогите!';
-  // //
+  localStorage.setItem('redq-currentParam', param);
+  localStorage.setItem('redq-currentId', id);
 
-  localStorage.currentField = param;
-  localStorage.currentGame = id;
-
-  // field.style.gridTemplateColumns = `repeat(${param}, 50px`;
-  // field.style.gridTemplateRows = `repeat(${param}, 50px`;
   upperHints.style.gridTemplateColumns = `repeat(${param}, 35px`;
   upperHints.style.gridTemplateRows = 'auto';
   lowerHints.style.gridTemplateColumns = 'auto';
@@ -87,56 +79,47 @@ function createGame(param, id) {
 
   field.addEventListener('click', fieldLeftClick);
   field.addEventListener('contextmenu', fieldRightClick);
+  main.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+  });
 }
 
 function createOffensive(param, id) {
   const offensive = createNewElement('section', 'offensive');
   const timer = createNewElement('div', 'offensive__timer');
   const label = createNewElement('div', 'offensive__label');
-  // const btns = createNewElement('div', 'offensive__btns');
-  // const resetBtn = createNewElement('div', 'offensive__btn');
-  // const solutionBtn = createNewElement('div', 'offensive__btn solution');
-  // const saveBtn = createNewElement('div', 'offensive__btn save');
 
   main.append(offensive);
   offensive.append(label);
   offensive.append(timer);
-  console.log(templates[param][id]);
-  // offensive.append(btns);
-  // btns.append(resetBtn);
-  // btns.append(solutionBtn);
-  // btns.append(saveBtn);
-  // resetBtn.textContent = 'Очистить';
-  // solutionBtn.textContent = 'Решение';
-  // saveBtn.textContent = 'Сохранить';
   label.textContent = `${templates[param][id].name} `;
   label.innerHTML += `<span>${param}x${param}</span>`;
   timer.textContent = '00:00';
-
-  // resetBtn.addEventListener('click', clearGame);
-  // solutionBtn.addEventListener('click', openSolution);
-  // saveBtn.addEventListener('click', saveGame);
 }
 
 function createOffensiveBottom() {
-  const offensive = createNewElement('section', 'offensive');
+  const offensive = createNewElement('section', 'offensive offensive__bottom');
   const btns = createNewElement('div', 'offensive__btns');
   const resetBtn = createNewElement('div', 'offensive__btn');
   const solutionBtn = createNewElement('div', 'offensive__btn solution');
   const saveBtn = createNewElement('div', 'offensive__btn save');
+  const chooseBtn = createNewElement('div', 'offensive__btn choose');
 
   main.append(offensive);
   offensive.append(btns);
   btns.append(resetBtn);
+  btns.append(chooseBtn);
   btns.append(solutionBtn);
   btns.append(saveBtn);
   resetBtn.textContent = 'Очистить';
+  chooseBtn.textContent = 'Сменить';
   solutionBtn.textContent = 'Решение';
   saveBtn.textContent = 'Сохранить';
 
   resetBtn.addEventListener('click', clearGame);
   solutionBtn.addEventListener('click', openSolution);
   saveBtn.addEventListener('click', saveGame);
+  chooseBtn.addEventListener('click', chooseGame);
 }
 
 function continueSavedGame() {
@@ -157,20 +140,6 @@ function continueSavedGame() {
   setCount(storedCount, storedOpenCount);
   setTimer(storedTimer);
 }
-
-// function openSolution() {
-//   const elems = document.querySelectorAll('.field__cell');
-//   changeCells(currentGame, elems);
-//   setFlag(false);
-// }
-
-// function clearGame() {
-//   const id = localStorage.getItem('currentGame');
-//   const param = localStorage.getItem('currentField');
-//   setFlag(false);
-//   cleanSibling();
-//   createGame(param, id);
-// }
 
 function setFlag(flag) {
   gameFlag = flag;
@@ -226,6 +195,7 @@ function setLeftHints(param, matrix) {
   }
   return result;
 }
+
 function setUpperHints(param, matrix) {
   const current = matrix;
   const result = [];
@@ -257,6 +227,47 @@ function createHintElem(elem, arr) {
     elem.append(newElem);
   }
 }
+
+function resizeGame() {
+  if (
+    document.documentElement.clientWidth <= 660 &&
+    document.querySelector('.game') &&
+    isAdaptive === 'normal'
+  ) {
+    setAdaptive(25);
+    isAdaptive = 'small';
+  } else if (
+    document.documentElement.clientWidth >= 660 &&
+    document.querySelector('.game') &&
+    isAdaptive === 'small'
+  ) {
+    setAdaptive(35);
+    isAdaptive = 'normal';
+  }
+}
+
+function setAdaptive(size) {
+  const fieldCell = document.querySelectorAll('.field__cell');
+  const fieldRow = document.querySelectorAll('.field__row');
+  const upper = document.querySelector('.upper-hints');
+  const lower = document.querySelector('.lower-hints');
+  const param = localStorage.getItem('redq-currentParam');
+
+  for (let i = 0; i < fieldCell.length; i++) {
+    fieldCell[i].style.maxWidth = `${size}px`;
+    fieldCell[i].style.maxHeight = `${size}px`;
+  }
+
+  for (let i = 0; i < fieldRow.length; i++) {
+    fieldRow[i].style.width = `${param * size}px`;
+    fieldRow[i].style.height = `${size}px`;
+  }
+
+  upper.style.gridTemplateColumns = `repeat(${param}, ${size}px`;
+  lower.style.gridTemplateRows = `repeat(${param}, ${size}px`;
+}
+
+window.addEventListener('resize', resizeGame);
 
 export {
   createGame,

@@ -57,8 +57,8 @@ function createWinModal() {
 }
 
 function setAchieve() {
-  const id = localStorage.getItem('currentGame');
-  const param = localStorage.getItem('currentField');
+  const id = localStorage.getItem('redq-currentId');
+  const param = localStorage.getItem('redq-currentParam');
   const newGame = {
     name: templates[param][id].name,
     timer: currentTimer,
@@ -89,6 +89,7 @@ function createAchieveModal() {
   const { overlay, modal, container } = createOverlay();
   const backBtn = createNewElement('div', 'modal__btn');
   const label = createNewElement('div', 'modal__label');
+  modal.classList.add('modal__achieve');
   label.textContent = 'Последние 5 результатов: ';
   container.append(label);
 
@@ -100,9 +101,9 @@ function createAchieveModal() {
       const cover = createNewElement('div', 'modal__cover');
       const coverLeft = createNewElement('div', 'modal__cover-left');
       const coverRight = createNewElement('div', 'modal__cover-right');
-      const elem = createNewElement('div', 'modal__text');
-      const elem2 = createNewElement('div', 'modal__text');
-      const field = createNewElement('div', 'modal__text');
+      const elem = createNewElement('div', 'modal__text-achieve');
+      const elem2 = createNewElement('div', 'modal__text-achieve');
+      const field = createNewElement('div', 'modal__text-achieve');
       const img = createNewElement('img', 'modal__img');
       elem.innerHTML = 'Нонограм: ' + `<span>${arr[i].name}</span>` + '';
       elem2.innerHTML =

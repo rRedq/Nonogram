@@ -201,14 +201,12 @@ table {
 
 .modal__cover span, .modal__label, .menu__label {
   color: var(--field-2);
-  margin-top: 10px;
   -webkit-text-decoration: var(--field-3) underline;
           text-decoration: var(--field-3) underline;
 }
 
-.modal__text, .menu__text {
+.modal__text-achieve, .modal__text, .menu__text {
   color: var(--field-6);
-  margin-top: 10px;
 }
 
 .modal__btn, .level__btn, .btns__btn, .offensive__btn, .header__btn {
@@ -314,7 +312,12 @@ table {
 .offensive__btns {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
+.offensive__bottom {
+  max-width: 260px;
+}
+
 .game {
   display: grid;
   grid-template-areas: "first second" "third four";
@@ -459,6 +462,9 @@ table {
   gap: 20px;
   margin-bottom: 20px;
 }
+.menu__label {
+  margin-top: 10px;
+}
 .menu__text {
   margin-bottom: 60px;
 }
@@ -546,6 +552,9 @@ table {
 .modal-active {
   transform: scale(1);
 }
+.modal__achieve {
+  width: 400px;
+}
 .modal__container {
   display: flex;
   flex-direction: column;
@@ -556,10 +565,13 @@ table {
   height: 100%;
 }
 .modal__label {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .modal__text {
   margin-bottom: 20px;
+}
+.modal__text-achieve {
+  margin-bottom: 10px;
 }
 .modal__btns {
   width: 100%;
@@ -573,8 +585,14 @@ table {
   display: flex;
   gap: 20px;
 }
+.modal__cover:nth-child(2) {
+  margin-top: 20px;
+}
+.modal__cover:nth-last-child(2) {
+  margin-bottom: 20px;
+}
 .modal__img {
-  max-width: 150px;
+  max-width: 120px;
 }
 .modal__img img {
   -o-object-fit: fill;
@@ -590,4 +608,23 @@ table {
   color: var(--btn-1);
   background: var(--btn-2);
   border: 1px solid var(--btn-3);
+}
+
+@media screen and (width < 1040px) {
+  .header {
+    justify-content: center;
+  }
+  .header__logo {
+    display: none;
+  }
+  .header__container {
+    padding-right: 0;
+  }
+  .offensive__bottom {
+    max-width: 300px;
+  }
+  .offensive__btns {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }/*# sourceMappingURL=style.css.map */

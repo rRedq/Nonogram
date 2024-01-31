@@ -196,12 +196,12 @@ $light-4: #343331;
 }
 %label {
   color: var(--field-2);
-  margin-top: 10px;
+  // margin-top: 10px;
   text-decoration: var(--field-3) underline;
 }
 %text {
   color: var(--field-6);
-  margin-top: 10px;
+  // margin-top: 10px;
 }
 %btn {
   min-width: 120px;
@@ -315,9 +315,13 @@ $light-4: #343331;
   &__btns {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
   }
   &__btn {
     @extend %btn;
+  }
+  &__bottom {
+    max-width: 260px;
   }
 }
 .game {
@@ -474,6 +478,7 @@ $light-4: #343331;
   }
   &__label {
     @extend %label;
+    margin-top: 10px;
   }
   &__text {
     @extend %text;
@@ -547,13 +552,10 @@ $light-4: #343331;
   position: absolute;
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
   font-size: 30px;
   font-weight: bold;
-  // color: rgb(152, 149, 149);
   gap: 40px;
   width: 500px;
-  // height: 300px;
   margin: 20px;
   padding: 16px 14px 16px 16px;
   border-radius: 40px;
@@ -561,15 +563,13 @@ $light-4: #343331;
   z-index: 1;
   transform: scale(0);
   transition: all 0.5s;
-  // box-shadow:
-  //   inset -8px 0 8px rgba(0, 0, 0, 0.15),
-  //   inset 0 -8px 8px rgba(0, 0, 0, 0.25),
-  //   0 0 50px 2px rgba(223, 240, 242, 0.482),
-  //   10px 20px 25px rgba(0, 0, 0, 0.4);
+
   &-active {
     transform: scale(1);
   }
-
+  &__achieve {
+    width: 400px;
+  }
   &__container {
     display: flex;
     flex-direction: column;
@@ -581,11 +581,15 @@ $light-4: #343331;
   }
   &__label {
     @extend %label;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   &__text {
     @extend %text;
     margin-bottom: 20px;
+    &-achieve {
+      @extend %text;
+      margin-bottom: 10px;
+    }
   }
   &__btns {
     width: 100%;
@@ -600,15 +604,19 @@ $light-4: #343331;
     display: flex;
     gap: 20px;
 
+    &:nth-child(2) {
+      margin-top: 20px;
+    }
+    &:nth-last-child(2) {
+      margin-bottom: 20px;
+    }
+
     span {
       @extend %label;
     }
-    &-left {
-      // width: 50px;
-    }
   }
   &__img {
-    max-width: 150px;
+    max-width: 120px;
     img {
       object-fit: fill;
       width: 100%;
@@ -635,7 +643,25 @@ $light-4: #343331;
     }
   }
 }
-// @media screen and (width < 970px) {
-// }
+@media screen and (width < 1040px) {
+  .header {
+    justify-content: center;
+    &__logo {
+      display: none;
+    }
+    &__container {
+      padding-right: 0;
+    }
+  }
+  .offensive {
+    &__bottom {
+      max-width: 300px;
+    }
+    &__btns {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+}
 // @media screen and (width < 620px) {
 // }
