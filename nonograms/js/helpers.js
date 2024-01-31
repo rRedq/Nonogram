@@ -9,18 +9,6 @@ function randomNumber(min, max) {
   return Math.floor(rand);
 }
 
-function randomHint(len) {
-  const prevHint = localStorage.getItem('redqCurrentHint');
-  const curr = randomNumber(0, len - 1);
-
-  if (prevHint === curr.toString()) {
-    return randomHint(len);
-  }
-
-  localStorage.setItem('redqCurrentHint', curr);
-  return curr;
-}
-
 function timerFormatting(param) {
   let sec = parseInt(param % 60, 10);
   let min = parseInt(param / 60, 10);
@@ -53,7 +41,6 @@ function changeCells(matrix, cells) {
 export {
   createNewElement,
   randomNumber,
-  randomHint,
   timerFormatting,
   cleanSibling,
   changeCells,

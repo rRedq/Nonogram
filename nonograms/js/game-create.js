@@ -5,6 +5,7 @@ import {
   changeCells,
 } from './helpers.js';
 import { templates } from './assets.js';
+import { setRandomGame } from './menu.js';
 import {
   fieldLeftClick,
   fieldRightClick,
@@ -48,15 +49,20 @@ function createGame(param, id) {
   localStorage.setItem('redq-currentParam', param);
   localStorage.setItem('redq-currentId', id);
 
-  upperHints.style.gridTemplateColumns = `repeat(${param}, 35px`;
+  const cWidth =
+    document.documentElement.clientWidth < 660 && Number(param) === 15
+      ? 25
+      : 35;
+
+  upperHints.style.gridTemplateColumns = `repeat(${param}, ${cWidth}px`;
   upperHints.style.gridTemplateRows = 'auto';
   lowerHints.style.gridTemplateColumns = 'auto';
-  lowerHints.style.gridTemplateRows = `repeat(${param}, 35px`;
+  lowerHints.style.gridTemplateRows = `repeat(${param}, ${cWidth}px`;
 
   for (let i = 0; i < param; i++) {
     const parent = createNewElement('div', 'field__row');
-    parent.style.width = `${param * 35}px`;
-    parent.style.height = `35px`;
+    parent.style.width = `${param * cWidth}px`;
+    parent.style.height = `${cWidth}px`;
     field.append(parent);
     for (let j = 0; j < param; j++) {
       const elem = createNewElement('div', 'field__cell');
@@ -98,12 +104,14 @@ function createOffensive(param, id) {
 }
 
 function createOffensiveBottom() {
-  const offensive = createNewElement('section', 'offensive offensive__bottom');
+  const offensive = createNewElement('section', 'offensive__bottom');
   const btns = createNewElement('div', 'offensive__btns');
   const resetBtn = createNewElement('div', 'offensive__btn');
   const solutionBtn = createNewElement('div', 'offensive__btn solution');
   const saveBtn = createNewElement('div', 'offensive__btn save');
   const chooseBtn = createNewElement('div', 'offensive__btn choose');
+  const downloadBtn = createNewElement('div', 'offensive__btn download');
+  const randomBtn = createNewElement('div', 'offensive__btn random');
 
   main.append(offensive);
   offensive.append(btns);
@@ -111,15 +119,25 @@ function createOffensiveBottom() {
   btns.append(chooseBtn);
   btns.append(solutionBtn);
   btns.append(saveBtn);
+  btns.append(downloadBtn);
+  btns.append(randomBtn);
   resetBtn.textContent = 'Очистить';
   chooseBtn.textContent = 'Сменить';
   solutionBtn.textContent = 'Решение';
   saveBtn.textContent = 'Сохранить';
+  downloadBtn.textContent = 'Загрузить';
+  randomBtn.textContent = 'Рандом';
+
+  localStorage.getItem('redq-openCount') === null
+    ? downloadBtn.classList.add('disable')
+    : false;
 
   resetBtn.addEventListener('click', clearGame);
   solutionBtn.addEventListener('click', openSolution);
   saveBtn.addEventListener('click', saveGame);
   chooseBtn.addEventListener('click', chooseGame);
+  downloadBtn.addEventListener('click', continueSavedGame);
+  randomBtn.addEventListener('click', setRandomGame);
 }
 
 function continueSavedGame() {
@@ -229,29 +247,28 @@ function createHintElem(elem, arr) {
 }
 
 function resizeGame() {
-  if (
-    document.documentElement.clientWidth <= 660 &&
-    document.querySelector('.game') &&
-    isAdaptive === 'normal'
-  ) {
+  const param = localStorage.getItem('redq-currentParam');
+
+  if (param !== '15') return false;
+
+  const elem = document.querySelector('.game');
+  const cWidth = document.documentElement.clientWidth;
+
+  if (cWidth < 660 && elem !== null && isAdaptive === 'normal') {
     setAdaptive(25);
     isAdaptive = 'small';
-  } else if (
-    document.documentElement.clientWidth >= 660 &&
-    document.querySelector('.game') &&
-    isAdaptive === 'small'
-  ) {
+  } else if (cWidth > 680 && elem !== null && isAdaptive === 'small') {
     setAdaptive(35);
     isAdaptive = 'normal';
   }
 }
 
 function setAdaptive(size) {
+  const param = localStorage.getItem('redq-currentParam');
   const fieldCell = document.querySelectorAll('.field__cell');
   const fieldRow = document.querySelectorAll('.field__row');
   const upper = document.querySelector('.upper-hints');
   const lower = document.querySelector('.lower-hints');
-  const param = localStorage.getItem('redq-currentParam');
 
   for (let i = 0; i < fieldCell.length; i++) {
     fieldCell[i].style.maxWidth = `${size}px`;

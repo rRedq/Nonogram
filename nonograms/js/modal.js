@@ -66,8 +66,8 @@ function setAchieve() {
     picture: templates[param][id].picture,
   };
   const arr =
-    JSON.parse(localStorage.getItem('achieve')) !== null
-      ? JSON.parse(localStorage.getItem('achieve'))
+    JSON.parse(localStorage.getItem('redq-achieve')) !== null
+      ? JSON.parse(localStorage.getItem('redq-achieve'))
       : [];
 
   if (arr.length > 4) {
@@ -77,13 +77,13 @@ function setAchieve() {
     arr.push(newGame);
   }
 
-  localStorage.setItem('achieve', JSON.stringify(arr));
+  localStorage.setItem('redq-achieve', JSON.stringify(arr));
 }
 
 function createAchieveModal() {
   const arr =
-    JSON.parse(localStorage.getItem('achieve')) !== null
-      ? JSON.parse(localStorage.getItem('achieve'))
+    JSON.parse(localStorage.getItem('redq-achieve')) !== null
+      ? JSON.parse(localStorage.getItem('redq-achieve'))
       : [];
 
   const { overlay, modal, container } = createOverlay();

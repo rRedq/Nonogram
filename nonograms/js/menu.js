@@ -9,6 +9,7 @@ function createMenu() {
   const menuStart = createNewElement('div', 'menu__start');
   const menuFirstP = createNewElement('div', 'menu__label');
   const menuSecondP = createNewElement('div', 'menu__text');
+  const menuOr = createNewElement('div', 'menu__or');
   const levelFirst = createNewElement('div', 'menu__level one');
   const levelSecond = createNewElement('div', 'menu__level two');
   const levelThird = createNewElement('div', 'menu__level three');
@@ -24,10 +25,11 @@ function createMenu() {
   menuStart.append(randomGame);
   menuFirstP.textContent = 'Новая игра!';
   menuSecondP.textContent = 'Выберете уровень сложности:';
-  levelFirst.textContent = 'Уровень слизняка';
-  levelSecond.textContent = 'Уровень червяка';
-  levelThird.textContent = 'Уровень хакера';
+  levelFirst.textContent = 'Легкий уровень';
+  levelSecond.textContent = 'Средний уровень';
+  levelThird.textContent = 'Сложный уровень';
   randomGame.textContent = 'Рандомная игра!';
+  menuOr.textContent = 'или';
 
   const storedMatrix = JSON.parse(localStorage.getItem('redq-matrix'));
 
@@ -38,6 +40,7 @@ function createMenu() {
     menuStart.before(continueGame);
     continueGame.append(text);
     continueGame.append(continueBtn);
+    continueGame.append(menuOr);
 
     text.textContent = 'Продолжить игру';
     continueBtn.textContent = 'Продолжить сохраненную игру';
@@ -56,7 +59,7 @@ function setRandomGame() {
   const index = randomNumber(0, 2);
 
   cleanSibling();
-  createGame(fields[index], randomNumber(0, 1));
+  createGame(fields[index], randomNumber(0, 4));
 }
 
 function setLevel(e) {
@@ -70,4 +73,4 @@ function setLevel(e) {
   cleanSibling();
 }
 
-export { createMenu };
+export { createMenu, setRandomGame };

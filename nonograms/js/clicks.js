@@ -134,6 +134,8 @@ function saveGame() {
   localStorage.setItem('redq-param', param);
   localStorage.setItem('redq-id', id);
   localStorage.setItem('redq-timer', currentTimer);
+
+  document.querySelector('.download').classList.remove('disable');
 }
 
 function checkSound(e) {

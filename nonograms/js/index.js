@@ -1,10 +1,9 @@
 import { createGame } from './game-create.js';
-import { createNewElement, cleanSibling } from './helpers.js';
+import { createNewElement, randomNumber } from './helpers.js';
 import { createMenu } from './menu.js';
 import { createAchieveModal } from './modal.js';
 import { checkSound, isSound, checkTheme, chooseGame } from './clicks.js';
 
-// createMenu();
 (function init() {
   const header = createNewElement('header', 'header');
   const container = createNewElement('div', 'header__container');
@@ -44,5 +43,5 @@ function isDark(elem) {
   }
 }
 
-createGame(5, 2);
+createGame(5, 0);
 // createMenu();
