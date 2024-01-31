@@ -25,19 +25,21 @@ function createWinModal() {
   const text = createNewElement('div', 'modal__text');
   const timer = createNewElement('div', 'modal__label');
   const textAchieve = createNewElement('div', 'modal__text');
+  const btns = createNewElement('div', 'modal__btns');
   const closeBtn = createNewElement('div', 'modal__btn');
   const menuBtn = createNewElement('div', 'modal__btn');
   container.append(label);
   container.append(text);
   container.append(timer);
   container.append(textAchieve);
-  container.append(menuBtn);
-  container.append(closeBtn);
+  container.append(btns);
+  btns.append(menuBtn);
+  btns.append(closeBtn);
   label.textContent = 'Вы победили!';
   text.textContent = 'Затраченное время:';
   timer.textContent = timerFormatting(currentTimer);
   textAchieve.textContent =
-    'Свои лучшие результаты вы можете посмотреть во вкладке достижения';
+    'Свои последние результаты вы можете посмотреть во вкладке достижения';
   menuBtn.textContent = 'Выбрать новую игру';
   closeBtn.textContent = 'Закрыть';
 

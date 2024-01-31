@@ -10,6 +10,8 @@ import {
   fieldRightClick,
   setCount,
   saveGame,
+  openSolution,
+  clearGame,
 } from './clicks.js';
 
 let main = '';
@@ -39,21 +41,30 @@ function createGame(param, id) {
   game.append(upperHints);
   game.append(field);
   game.append(lowerHints);
+  createOffensiveBottom();
+
+  // //
+  // const btns = createNewElement('section', 'btns');
+  // const btn1 = createNewElement('div', 'btns__btn disable');
+  // main.append(btns);
+  // btns.append(btn1);
+  // btn1.textContent = 'Помогите!';
+  // //
 
   localStorage.currentField = param;
   localStorage.currentGame = id;
 
   // field.style.gridTemplateColumns = `repeat(${param}, 50px`;
   // field.style.gridTemplateRows = `repeat(${param}, 50px`;
-  upperHints.style.gridTemplateColumns = `repeat(${param}, 50px`;
-  upperHints.style.gridTemplateRows = '70px';
-  lowerHints.style.gridTemplateColumns = '70px';
-  lowerHints.style.gridTemplateRows = `repeat(${param}, 50px`;
+  upperHints.style.gridTemplateColumns = `repeat(${param}, 35px`;
+  upperHints.style.gridTemplateRows = 'auto';
+  lowerHints.style.gridTemplateColumns = 'auto';
+  lowerHints.style.gridTemplateRows = `repeat(${param}, 35px`;
 
   for (let i = 0; i < param; i++) {
     const parent = createNewElement('div', 'field__row');
-    parent.style.width = `${param * 50}px`;
-    parent.style.height = `50px`;
+    parent.style.width = `${param * 35}px`;
+    parent.style.height = `35px`;
     field.append(parent);
     for (let j = 0; j < param; j++) {
       const elem = createNewElement('div', 'field__cell');
@@ -81,13 +92,40 @@ function createGame(param, id) {
 function createOffensive(param, id) {
   const offensive = createNewElement('section', 'offensive');
   const timer = createNewElement('div', 'offensive__timer');
-  const btns = createNewElement('div', 'offensive__btns');
-  const resetBtn = createNewElement('div', 'offensive__btn');
-  const solutionBtn = createNewElement('div', 'offensive__btn');
-  const saveBtn = createNewElement('div', 'offensive__btn');
+  const label = createNewElement('div', 'offensive__label');
+  // const btns = createNewElement('div', 'offensive__btns');
+  // const resetBtn = createNewElement('div', 'offensive__btn');
+  // const solutionBtn = createNewElement('div', 'offensive__btn solution');
+  // const saveBtn = createNewElement('div', 'offensive__btn save');
 
   main.append(offensive);
+  offensive.append(label);
   offensive.append(timer);
+  console.log(templates[param][id]);
+  // offensive.append(btns);
+  // btns.append(resetBtn);
+  // btns.append(solutionBtn);
+  // btns.append(saveBtn);
+  // resetBtn.textContent = 'Очистить';
+  // solutionBtn.textContent = 'Решение';
+  // saveBtn.textContent = 'Сохранить';
+  label.textContent = `${templates[param][id].name} `;
+  label.innerHTML += `<span>${param}x${param}</span>`;
+  timer.textContent = '00:00';
+
+  // resetBtn.addEventListener('click', clearGame);
+  // solutionBtn.addEventListener('click', openSolution);
+  // saveBtn.addEventListener('click', saveGame);
+}
+
+function createOffensiveBottom() {
+  const offensive = createNewElement('section', 'offensive');
+  const btns = createNewElement('div', 'offensive__btns');
+  const resetBtn = createNewElement('div', 'offensive__btn');
+  const solutionBtn = createNewElement('div', 'offensive__btn solution');
+  const saveBtn = createNewElement('div', 'offensive__btn save');
+
+  main.append(offensive);
   offensive.append(btns);
   btns.append(resetBtn);
   btns.append(solutionBtn);
@@ -95,7 +133,6 @@ function createOffensive(param, id) {
   resetBtn.textContent = 'Очистить';
   solutionBtn.textContent = 'Решение';
   saveBtn.textContent = 'Сохранить';
-  timer.textContent = '00:00';
 
   resetBtn.addEventListener('click', clearGame);
   solutionBtn.addEventListener('click', openSolution);
@@ -121,24 +158,31 @@ function continueSavedGame() {
   setTimer(storedTimer);
 }
 
-function openSolution() {
-  const elems = document.querySelectorAll('.field__cell');
-  changeCells(currentGame, elems);
-  setFlag(false);
-}
+// function openSolution() {
+//   const elems = document.querySelectorAll('.field__cell');
+//   changeCells(currentGame, elems);
+//   setFlag(false);
+// }
 
-function clearGame() {
-  const id = localStorage.getItem('currentGame');
-  const param = localStorage.getItem('currentField');
-  setFlag(false);
-  cleanSibling();
-  createGame(param, id);
-}
+// function clearGame() {
+//   const id = localStorage.getItem('currentGame');
+//   const param = localStorage.getItem('currentField');
+//   setFlag(false);
+//   cleanSibling();
+//   createGame(param, id);
+// }
 
 function setFlag(flag) {
   gameFlag = flag;
-  console.log(gameFlag);
   setTimer(currentTimer);
+
+  const save = document.querySelector('.save');
+  const solution = document.querySelector('.solution');
+
+  if (gameFlag === false && save !== null) {
+    save.classList.add('disable');
+    solution.classList.add('disable');
+  }
 }
 
 function setTimer(timer) {

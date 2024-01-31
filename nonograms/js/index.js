@@ -2,7 +2,7 @@ import { createGame } from './game-create.js';
 import { createNewElement, cleanSibling } from './helpers.js';
 import { createMenu } from './menu.js';
 import { createAchieveModal } from './modal.js';
-import { checkSound, isSound } from './clicks.js';
+import { checkSound, isSound, checkTheme } from './clicks.js';
 
 // createMenu();
 (function init() {
@@ -12,9 +12,11 @@ import { checkSound, isSound } from './clicks.js';
   const btnAchieve = createNewElement('div', 'header__btn');
   const logo = createNewElement('div', 'header__logo');
   const sound = createNewElement('div', 'header__sound');
+  const theme = createNewElement('div', 'header__theme-light');
   document.body.append(header);
   header.append(logo);
   header.append(container);
+  container.append(theme);
   container.append(sound);
   container.append(btnAchieve);
   container.append(btnBack);
@@ -22,18 +24,30 @@ import { checkSound, isSound } from './clicks.js';
   btnAchieve.textContent = 'Достижения';
   logo.textContent = 'Nonograms online';
 
+  isDark(theme);
   !isSound ? sound.classList.add('header__sound-off') : false;
 
   btnBack.addEventListener('click', btnClick);
   logo.addEventListener('click', btnClick);
   btnAchieve.addEventListener('click', createAchieveModal);
   sound.addEventListener('click', checkSound);
+  theme.addEventListener('click', checkTheme);
 
   function btnClick() {
     cleanSibling();
     createMenu();
   }
 })();
-createGame(5, 2);
+
+function isDark(elem) {
+  const theme = localStorage.getItem('redq-theme');
+  if (theme === null) return false;
+
+  if (theme === 'dark') {
+    document.body.setAttribute('data-theme', 'dark');
+    elem.classList.add('header__theme-dark');
+  }
+}
+
+createGame(15, 1);
 // createMenu();
-// createWinModal();

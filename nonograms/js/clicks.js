@@ -7,8 +7,8 @@ import {
   setFlag,
 } from './game-create.js';
 import { createWinModal } from './modal.js';
-
-// const id = localStorage.getItem('currentGame');
+import { changeCells, cleanSibling } from './helpers.js';
+import { createGame } from './game-create.js';
 
 let count = 0;
 let openCount = 0;
@@ -18,21 +18,14 @@ let isSound =
       ? true
       : false
     : true;
-// console.log(localStorage.getItem('isSound'));
-// console.log(isSound);
-// const arr =
-//     JSON.parse(localStorage.getItem('achieve')) !== null
-//       ? JSON.parse(localStorage.getItem('achieve'))
-//       : [];
 
 function fieldLeftClick(e) {
   if (gameFlag === false) {
     return false;
   } else if (gameFlag === 0) {
-    // setTimer(0, true);
     setFlag(true);
   }
-  console.log(isSound);
+
   const value = e.target;
   const arr = currentGame;
 
@@ -61,14 +54,8 @@ function fieldLeftClick(e) {
     }
   }
 
-  // console.log('openC = ' + openCount);
-  // console.log('rightCount = ' + count);
-  console.log(currentTimer);
-  console.log(currentGame);
-
   if (count === correctCount && openCount === count) {
     createWinModal();
-    // setCount();
     setFlag(false);
   }
 }
@@ -108,9 +95,6 @@ function fieldRightClick(e) {
     }
   }
 
-  console.log('openC = ' + openCount);
-  console.log('count = ' + count);
-
   if (count === correctCount && openCount === count) {
     createWinModal();
     // setCount();
@@ -124,6 +108,8 @@ function setCount(param, param2) {
 }
 
 function saveGame() {
+  if (gameFlag === false) return false;
+
   const id = localStorage.getItem('currentGame');
   const param = localStorage.getItem('currentField');
   const cells = document.querySelectorAll('.field__cell');
@@ -148,6 +134,7 @@ function saveGame() {
   localStorage.setItem('redq-id', id);
   localStorage.setItem('redq-timer', currentTimer);
 }
+
 function checkSound(e) {
   if (e.target.className !== 'header__sound') {
     isSound = true;
@@ -160,10 +147,39 @@ function checkSound(e) {
 }
 
 function playSound(value) {
-  console.log('isSound = ' + isSound);
   if (!isSound) return false;
   const audio = new Audio(`./sounds/${value}.wav`);
   audio.play();
+}
+
+function openSolution() {
+  if (gameFlag === false) return false;
+
+  const elems = document.querySelectorAll('.field__cell');
+  changeCells(currentGame, elems);
+  setFlag(false);
+}
+
+function clearGame() {
+  const id = localStorage.getItem('currentGame');
+  const param = localStorage.getItem('currentField');
+  setFlag(false);
+  cleanSibling();
+  createGame(param, id);
+}
+
+function checkTheme(e) {
+  const elem = document.querySelector('.body');
+  // e.target.classList.toggle('header__theme-dark');
+  if (e.target.className === 'header__theme-light') {
+    e.target.classList.add('header__theme-dark');
+    elem.setAttribute('data-theme', 'dark');
+    localStorage.setItem('redq-theme', 'dark');
+  } else {
+    e.target.classList.remove('header__theme-dark');
+    elem.setAttribute('data-theme', 'light');
+    localStorage.setItem('redq-theme', 'light');
+  }
 }
 
 export {
@@ -174,4 +190,7 @@ export {
   checkSound,
   playSound,
   isSound,
+  openSolution,
+  clearGame,
+  checkTheme,
 };
