@@ -115,17 +115,17 @@ function createOffensiveBottom() {
 
   main.append(offensive);
   offensive.append(btns);
-  btns.append(randomBtn);
-  btns.append(saveBtn);
   btns.append(resetBtn);
+  btns.append(randomBtn);
   btns.append(chooseBtn);
+  btns.append(saveBtn);
   btns.append(downloadBtn);
   btns.append(solutionBtn);
   resetBtn.textContent = 'Reset game';
-  chooseBtn.textContent = 'Change game';
+  chooseBtn.textContent = 'New game';
   solutionBtn.textContent = 'Solution';
   saveBtn.textContent = 'Save game';
-  downloadBtn.textContent = 'Load game';
+  downloadBtn.textContent = 'Continue last game';
   randomBtn.textContent = 'Random game';
 
   localStorage.getItem('redq-openCount') === null

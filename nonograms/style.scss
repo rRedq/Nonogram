@@ -207,7 +207,7 @@ $light-4: #343331;
 }
 %btn {
   min-width: 120px;
-  max-width: 150px;
+  max-width: 200px;
   padding: 15px;
   font-size: 22px;
   text-align: center;
@@ -323,7 +323,7 @@ $light-4: #343331;
     @extend %btn;
   }
   &__bottom {
-    max-width: 440px;
+    max-width: 460px;
     margin: 0 auto;
     margin-top: 20px;
     padding-bottom: 40px;
@@ -710,7 +710,7 @@ $light-4: #343331;
   }
   .offensive {
     &__bottom {
-      max-width: 320px;
+      max-width: 350px;
     }
     &__btns {
       justify-content: space-between;
