@@ -23,13 +23,13 @@ function createMenu() {
   menuStart.append(levelSecond);
   menuStart.append(levelThird);
   menuStart.append(randomGame);
-  menuFirstP.textContent = 'Новая игра!';
-  menuSecondP.textContent = 'Выберете уровень сложности:';
-  levelFirst.textContent = 'Легкий уровень';
-  levelSecond.textContent = 'Средний уровень';
-  levelThird.textContent = 'Сложный уровень';
-  randomGame.textContent = 'Рандомная игра!';
-  menuOr.textContent = 'или';
+  menuFirstP.textContent = 'New game!';
+  menuSecondP.textContent = 'Select difficulty level:';
+  levelFirst.textContent = 'Easy';
+  levelSecond.textContent = 'Medium';
+  levelThird.textContent = 'Hard';
+  randomGame.textContent = 'Random game!';
+  menuOr.textContent = 'or';
 
   const storedMatrix = JSON.parse(localStorage.getItem('redq-matrix'));
 
@@ -42,8 +42,8 @@ function createMenu() {
     continueGame.append(continueBtn);
     continueGame.append(menuOr);
 
-    text.textContent = 'Продолжить игру';
-    continueBtn.textContent = 'Продолжить сохраненную игру';
+    text.textContent = 'Continue game:';
+    continueBtn.textContent = 'Continue last game';
 
     continueBtn.addEventListener('click', continueSavedGame);
   }

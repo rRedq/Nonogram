@@ -23,25 +23,18 @@ function createWinModal() {
   const { modal, overlay, container } = createOverlay();
   const label = createNewElement('div', 'modal__label');
   const text = createNewElement('div', 'modal__text');
-  const timer = createNewElement('div', 'modal__label');
-  const textAchieve = createNewElement('div', 'modal__text');
   const btns = createNewElement('div', 'modal__btns');
   const closeBtn = createNewElement('div', 'modal__btn');
   const menuBtn = createNewElement('div', 'modal__btn');
   container.append(label);
   container.append(text);
-  container.append(timer);
-  container.append(textAchieve);
   container.append(btns);
   btns.append(menuBtn);
   btns.append(closeBtn);
-  label.textContent = 'Вы победили!';
-  text.textContent = 'Затраченное время:';
-  timer.textContent = timerFormatting(currentTimer);
-  textAchieve.textContent =
-    'Свои последние результаты вы можете посмотреть во вкладке достижения';
-  menuBtn.textContent = 'Выбрать новую игру';
-  closeBtn.textContent = 'Закрыть';
+  label.textContent = 'You have won!';
+  text.textContent = `Great! You have solved the nonogram in ${currentTimer} seconds`;
+  menuBtn.textContent = 'Select another game';
+  closeBtn.textContent = 'Close';
 
   playSound('win');
   setAchieve();
@@ -90,7 +83,7 @@ function createAchieveModal() {
   const backBtn = createNewElement('div', 'modal__btn');
   const label = createNewElement('div', 'modal__label');
   modal.classList.add('modal__achieve');
-  label.textContent = 'Последние 5 результатов: ';
+  label.textContent = 'High score: ';
   container.append(label);
 
   if (arr.length > 0) {
@@ -105,11 +98,11 @@ function createAchieveModal() {
       const elem2 = createNewElement('div', 'modal__text-achieve');
       const field = createNewElement('div', 'modal__text-achieve');
       const img = createNewElement('img', 'modal__img');
-      elem.innerHTML = 'Нонограм: ' + `<span>${arr[i].name}</span>` + '';
+      elem.innerHTML = `<span>${arr[i].name}</span>` + '';
       elem2.innerHTML =
-        'Время: ' + `<span>${timerFormatting(arr[i].timer)}</span>` + '';
+        'Time: ' + `<span>${timerFormatting(arr[i].timer)}</span>` + '';
       field.innerHTML =
-        'Поле: ' + `<span>${arr[i].field + 'x' + arr[i].field}</span>` + '';
+        'Field: ' + `<span>${arr[i].field + 'x' + arr[i].field}</span>` + '';
       img.src = `./img/${arr[i].picture}.png`;
 
       container.append(cover);
@@ -122,12 +115,12 @@ function createAchieveModal() {
     }
   } else {
     const elem = createNewElement('div', 'modal__text');
-    elem.textContent = 'На данный момент достижений нет';
+    elem.textContent = "You haven't achievement yet";
     container.append(elem);
   }
 
   container.append(backBtn);
-  backBtn.textContent = 'Закрыть';
+  backBtn.textContent = 'Close';
 
   backBtn.addEventListener('click', () => {
     closeModal(overlay, modal);

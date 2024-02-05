@@ -1,7 +1,7 @@
 const templates = {
   5: {
     0: {
-      name: 'Крест',
+      name: 'Cross',
       picture: 'cross',
       matrix: [
         [0, 0, 1, 0, 0],
@@ -12,7 +12,7 @@ const templates = {
       ],
     },
     1: {
-      name: 'Самолет',
+      name: 'Airplane',
       picture: 'airplane',
       matrix: [
         [0, 0, 1, 0, 0],
@@ -23,7 +23,7 @@ const templates = {
       ],
     },
     2: {
-      name: 'Кубок',
+      name: 'Gablet',
       picture: 'gablet',
       matrix: [
         [1, 0, 0, 0, 1],
@@ -34,7 +34,7 @@ const templates = {
       ],
     },
     3: {
-      name: 'Тотем',
+      name: 'Totem',
       picture: 'totem',
       matrix: [
         [1, 0, 0, 0, 1],
@@ -45,7 +45,7 @@ const templates = {
       ],
     },
     4: {
-      name: 'Шашки',
+      name: 'Checkers',
       picture: 'checkers',
       matrix: [
         [1, 0, 1, 0, 1],
@@ -58,7 +58,7 @@ const templates = {
   },
   10: {
     0: {
-      name: 'Ромб',
+      name: 'Rhombus',
       picture: 'rhombus',
       matrix: [
         [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
@@ -74,7 +74,7 @@ const templates = {
       ],
     },
     1: {
-      name: 'Снеговик',
+      name: 'Snowman',
       picture: 'snowman',
       matrix: [
         [1, 1, 1, 0, 0, 0, 0, 1, 1, 1],
@@ -90,7 +90,7 @@ const templates = {
       ],
     },
     2: {
-      name: 'Кот',
+      name: 'Cat',
       picture: 'cat',
       matrix: [
         [0, 0, 0, 0, 0, 0, 1, 1, 1, 0],
@@ -106,7 +106,7 @@ const templates = {
       ],
     },
     3: {
-      name: 'Чайник',
+      name: 'Kettle',
       picture: 'kettle',
       matrix: [
         [0, 0, 1, 1, 1, 1, 1, 0, 0, 0],
@@ -122,7 +122,7 @@ const templates = {
       ],
     },
     4: {
-      name: 'Хомяк',
+      name: 'Hamster',
       picture: 'hamster',
       matrix: [
         [1, 1, 1, 0, 0, 0, 1, 1, 1, 1],
@@ -140,7 +140,7 @@ const templates = {
   },
   15: {
     0: {
-      name: 'Молот',
+      name: 'Hammer',
       picture: 'hammer',
       matrix: [
         [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -161,7 +161,7 @@ const templates = {
       ],
     },
     1: {
-      name: 'Кот',
+      name: 'Kitty',
       picture: 'kitty',
       matrix: [
         [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
@@ -182,7 +182,7 @@ const templates = {
       ],
     },
     1: {
-      name: 'Утка',
+      name: 'Duck',
       picture: 'duck',
       matrix: [
         [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0],
@@ -203,7 +203,7 @@ const templates = {
       ],
     },
     2: {
-      name: 'Улитка',
+      name: 'Snail',
       picture: 'snail',
       matrix: [
         [0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
@@ -224,7 +224,7 @@ const templates = {
       ],
     },
     3: {
-      name: 'Смайл',
+      name: 'Smaily',
       picture: 'smaily',
       matrix: [
         [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -245,7 +245,7 @@ const templates = {
       ],
     },
     4: {
-      name: 'Бык',
+      name: 'Bull',
       picture: 'bull',
       matrix: [
         [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],

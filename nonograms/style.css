@@ -170,6 +170,8 @@ table {
   --field-6: #d7ced6;
   --overlay: rgba(188, 171, 151, 0.6);
   --modal: #4e4a47;
+  --cell: rgb(56, 56, 56);
+  --cross: url(./img/cross-light.svg);
 }
 
 [data-theme=dark] {
@@ -184,14 +186,16 @@ table {
   --header-2: #4e4a47;
   --offensive-1: #d7ced6;
   --text: #d7ced6;
-  --field-1: #ffffff7f;
+  --field-1: #857462;
   --field-2: #0c1015b0;
   --field-3: #0c1015;
-  --field-4: #671b1b9f;
-  --field-5: #1b1b6798;
+  --field-4: #1b1b6798;
+  --field-5: #671b1b9f;
   --field-6: #323332b6;
   --overlay: rgba(18, 11, 4, 0.6);
-  --modal: #8b8b8bfb;
+  --modal: #857462;
+  --cell: rgb(35, 35, 35);
+  --cross: url(./img/cross-dark.svg);
 }
 
 .lower-hints__line, .upper-hints__line, .field__cell {
@@ -312,12 +316,13 @@ table {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 }
 .offensive__bottom {
-  max-width: 400px;
+  max-width: 440px;
   margin: 0 auto;
   margin-top: 20px;
+  padding-bottom: 40px;
 }
 
 .game {
@@ -360,7 +365,7 @@ table {
 }
 
 .fill {
-  background: rgb(56, 56, 56);
+  background: var(--cell);
 }
 
 .cross {
@@ -378,7 +383,7 @@ table {
   top: 0;
   right: 0;
   bottom: 0;
-  background: rgba(9, 9, 9, 0) url(./img/cross.svg) no-repeat;
+  background: rgba(9, 9, 9, 0) var(--cross) no-repeat;
   background-size: 100% 100%;
 }
 
@@ -447,7 +452,7 @@ table {
   justify-content: center;
   align-items: center;
   height: calc(100vh - 70px);
-  font-size: 50px;
+  font-size: 40px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -465,9 +470,10 @@ table {
 }
 .menu__label {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 .menu__text {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 .menu__level {
   color: var(--field-4);
@@ -485,7 +491,7 @@ table {
   justify-content: center;
   align-items: center;
   height: calc(100vh - 70px);
-  font-size: 50px;
+  font-size: 40px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -541,7 +547,7 @@ table {
   font-size: 30px;
   font-weight: bold;
   gap: 40px;
-  width: 500px;
+  width: 400px;
   margin: 20px;
   padding: 16px 14px 16px 16px;
   border-radius: 40px;
@@ -569,7 +575,7 @@ table {
   margin-bottom: 10px;
 }
 .modal__text {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .modal__text-achieve {
   margin-bottom: 10px;
@@ -586,6 +592,8 @@ table {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  border-bottom: 1.5px dashed var(--field-6);
+  margin-top: 7px;
 }
 .modal__cover-right {
   width: 200px;
@@ -616,17 +624,54 @@ table {
 }
 
 @media screen and (width < 1040px) {
-  .header {
-    justify-content: center;
-  }
   .header__logo {
-    display: none;
+    font-size: 40px;
   }
-  .header__container {
-    padding-right: 0;
+  .menu {
+    font-size: 35px;
   }
   .menu__cover {
     padding: 15px;
     margin: 0 10px;
+  }
+  .modal {
+    width: 420px;
+    padding: 10px;
+    font-size: 25px;
+    margin: 0 10px;
+  }
+  .modal__text {
+    max-width: 380px;
+  }
+}
+@media screen and (width < 870px) {
+  .header__btn, .offensive__btn, .btns__btn, .level__btn, .modal__btn {
+    min-width: 90px;
+    font-size: 16px;
+    padding: 12px;
+  }
+  .header__logo {
+    background-image: url("./img/logo.png");
+    width: 60px;
+    height: 60px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+  .header__logo span {
+    display: none;
+  }
+  .header__container {
+    gap: 15px;
+    padding-right: 15px;
+  }
+  .header__sound, .header__theme-light, .header__theme-dark {
+    width: 35px;
+    height: 35px;
+  }
+  .offensive__bottom {
+    max-width: 320px;
+  }
+  .offensive__btns {
+    justify-content: space-between;
   }
 }/*# sourceMappingURL=style.css.map */

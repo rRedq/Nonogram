@@ -19,8 +19,8 @@ function levelChoose(size) {
   level.append(btn);
 
   desc.textContent = `Поле ${size}x${size}`;
-  headline.textContent = 'Выберете игру:';
-  btn.textContent = 'Назад';
+  headline.textContent = 'Select game:';
+  btn.textContent = 'Back';
 
   for (let i = 0; i < Object.keys(obj).length; i++) {
     const elem = createNewElement('div', 'level__field');

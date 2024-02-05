@@ -27,7 +27,7 @@ let isAdaptive = 'normal';
 function createGame(param, id) {
   setCount(0, 0);
   currentTimer = 0;
-  gameFlag = 0;
+  setFlag(0);
   currentGame = templates[param][id].matrix;
 
   main = createNewElement('main', 'main');
@@ -50,7 +50,7 @@ function createGame(param, id) {
   localStorage.setItem('redq-currentId', id);
 
   const cWidth =
-    document.documentElement.clientWidth < 660 && Number(param) === 15
+    document.documentElement.clientWidth < 690 && Number(param) === 15
       ? 25
       : 35;
 
@@ -115,18 +115,18 @@ function createOffensiveBottom() {
 
   main.append(offensive);
   offensive.append(btns);
+  btns.append(randomBtn);
+  btns.append(saveBtn);
   btns.append(resetBtn);
   btns.append(chooseBtn);
-  btns.append(solutionBtn);
-  btns.append(saveBtn);
   btns.append(downloadBtn);
-  btns.append(randomBtn);
-  resetBtn.textContent = 'Очистить';
-  chooseBtn.textContent = 'Сменить';
-  solutionBtn.textContent = 'Решение';
-  saveBtn.textContent = 'Сохранить';
-  downloadBtn.textContent = 'Загрузить';
-  randomBtn.textContent = 'Рандом';
+  btns.append(solutionBtn);
+  resetBtn.textContent = 'Reset game';
+  chooseBtn.textContent = 'Change game';
+  solutionBtn.textContent = 'Solution';
+  saveBtn.textContent = 'Save game';
+  downloadBtn.textContent = 'Load game';
+  randomBtn.textContent = 'Random game';
 
   localStorage.getItem('redq-openCount') === null
     ? downloadBtn.classList.add('disable')
@@ -180,8 +180,6 @@ function setTimer(timer) {
   if (gameFlag === true) {
     interval = setInterval(() => {
       currentTimer += 1;
-      // console.log('timer = ' + currentTimer);
-      // console.log(elem);
 
       elem.textContent = timerFormatting(currentTimer);
     }, 1000);
@@ -254,10 +252,10 @@ function resizeGame() {
   const elem = document.querySelector('.game');
   const cWidth = document.documentElement.clientWidth;
 
-  if (cWidth < 660 && elem !== null && isAdaptive === 'normal') {
+  if (cWidth < 690 && elem !== null && isAdaptive === 'normal') {
     setAdaptive(25);
     isAdaptive = 'small';
-  } else if (cWidth > 680 && elem !== null && isAdaptive === 'small') {
+  } else if (cWidth > 720 && elem !== null && isAdaptive === 'small') {
     setAdaptive(35);
     isAdaptive = 'normal';
   }

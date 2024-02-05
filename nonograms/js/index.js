@@ -19,9 +19,9 @@ import { checkSound, isSound, checkTheme, chooseGame } from './clicks.js';
   container.append(sound);
   container.append(btnAchieve);
   container.append(btnBack);
-  btnBack.textContent = 'На главную';
-  btnAchieve.textContent = 'Достижения';
-  logo.textContent = 'Nonograms online';
+  btnBack.textContent = 'Main';
+  btnAchieve.textContent = 'Hight score';
+  logo.innerHTML = '<span>Nonograms online</span>';
 
   isDark(theme);
   !isSound ? sound.classList.add('header__sound-off') : false;
@@ -43,5 +43,5 @@ function isDark(elem) {
   }
 }
 
-createGame(5, 0);
+createGame(5, 1);
 // createMenu();
