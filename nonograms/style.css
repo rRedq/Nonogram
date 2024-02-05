@@ -225,12 +225,6 @@ table {
   border: 1px solid var(--btn-3);
   box-sizing: border-box;
 }
-.modal__btn:hover, .level__btn:hover, .btns__btn:hover, .offensive__btn:hover, .header__btn:hover {
-  color: var(--btn-4);
-  background: var(--btn-5);
-  border: 1px solid var(--btn-3);
-  cursor: pointer;
-}
 
 .body {
   font-family: "Ashar";
@@ -250,9 +244,6 @@ table {
   font-family: "Dell";
   font-size: 60px;
 }
-.header__logo:hover {
-  cursor: pointer;
-}
 .header__container {
   display: flex;
   align-items: center;
@@ -265,10 +256,6 @@ table {
   background-size: 100%;
   background-repeat: no-repeat;
   opacity: 50%;
-}
-.header__sound:hover, .header__sound-off:hover {
-  filter: drop-shadow(0px 0px 1px var(--btn-4));
-  cursor: pointer;
 }
 .header__sound {
   background-image: url("./img/sound-on.svg");
@@ -479,12 +466,6 @@ table {
   color: var(--field-4);
   margin-bottom: 20px;
 }
-.menu__level:hover {
-  color: var(--field-5);
-  -webkit-text-decoration: var(--field-5) underline;
-          text-decoration: var(--field-5) underline;
-  cursor: pointer;
-}
 
 .level {
   display: flex;
@@ -521,12 +502,6 @@ table {
 .level__field {
   color: var(--field-4);
   margin-bottom: 20px;
-}
-.level__field:hover {
-  color: var(--field-5);
-  -webkit-text-decoration: var(--field-5) underline;
-          text-decoration: var(--field-5) underline;
-  cursor: pointer;
 }
 
 .overlay {
@@ -616,13 +591,40 @@ table {
 .disable {
   opacity: 0.4;
 }
-.disable:hover {
-  cursor: default;
-  color: var(--btn-1);
-  background: var(--btn-2);
-  border: 1px solid var(--btn-3);
-}
 
+@media (hover: hover) {
+  .header__btn:hover, .offensive__btn:hover, .btns__btn:hover, .level__btn:hover, .modal__btn:hover {
+    color: var(--btn-4);
+    background: var(--btn-5);
+    border: 1px solid var(--btn-3);
+    cursor: pointer;
+  }
+  .disable:hover {
+    cursor: default;
+    color: var(--btn-1);
+    background: var(--btn-2);
+    border: 1px solid var(--btn-3);
+  }
+  .header__logo:hover {
+    cursor: pointer;
+  }
+  .header__sound:hover, .header__sound-off:hover {
+    filter: drop-shadow(0px 0px 1px var(--btn-4));
+    cursor: pointer;
+  }
+  .menu__level:hover {
+    color: var(--field-5);
+    -webkit-text-decoration: var(--field-5) underline;
+            text-decoration: var(--field-5) underline;
+    cursor: pointer;
+  }
+  .level__field:hover {
+    color: var(--field-5);
+    -webkit-text-decoration: var(--field-5) underline;
+            text-decoration: var(--field-5) underline;
+    cursor: pointer;
+  }
+}
 @media screen and (width < 1040px) {
   .header__logo {
     font-size: 40px;

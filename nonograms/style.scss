@@ -216,12 +216,12 @@ $light-4: #343331;
   border-radius: 20px;
   border: 1px solid var(--btn-3);
   box-sizing: border-box;
-  &:hover {
-    color: var(--btn-4);
-    background: var(--btn-5);
-    border: 1px solid var(--btn-3);
-    cursor: pointer;
-  }
+  // &:hover {
+  //   color: var(--btn-4);
+  //   background: var(--btn-5);
+  //   border: 1px solid var(--btn-3);
+  //   cursor: pointer;
+  // }
 }
 .body {
   font-family: 'Ashar';
@@ -241,9 +241,9 @@ $light-4: #343331;
     margin-left: 30px;
     font-family: 'Dell';
     font-size: 60px;
-    &:hover {
-      cursor: pointer;
-    }
+    // &:hover {
+    //   cursor: pointer;
+    // }
   }
   &__container {
     display: flex;
@@ -258,10 +258,10 @@ $light-4: #343331;
     background-size: 100%;
     background-repeat: no-repeat;
     opacity: 50%;
-    &:hover {
-      filter: drop-shadow(0px 0px 1px var(--btn-4));
-      cursor: pointer;
-    }
+    // &:hover {
+    //   filter: drop-shadow(0px 0px 1px var(--btn-4));
+    //   cursor: pointer;
+    // }
   }
   &__sound {
     background-image: url('./img/sound-on.svg');
@@ -499,11 +499,11 @@ $light-4: #343331;
     color: var(--field-4);
     margin-bottom: 20px;
 
-    &:hover {
-      color: var(--field-5);
-      text-decoration: var(--field-5) underline;
-      cursor: pointer;
-    }
+    // &:hover {
+    //   color: var(--field-5);
+    //   text-decoration: var(--field-5) underline;
+    //   cursor: pointer;
+    // }
   }
 }
 .level {
@@ -540,11 +540,11 @@ $light-4: #343331;
     color: var(--field-4);
     margin-bottom: 20px;
 
-    &:hover {
-      color: var(--field-5);
-      text-decoration: var(--field-5) underline;
-      cursor: pointer;
-    }
+    // &:hover {
+    //   color: var(--field-5);
+    //   text-decoration: var(--field-5) underline;
+    //   cursor: pointer;
+    // }
   }
 }
 .overlay {
@@ -639,18 +639,60 @@ $light-4: #343331;
 }
 .disable {
   opacity: 0.4;
-  &:hover {
-    cursor: default;
-    color: var(--btn-1);
-    background: var(--btn-2);
-    border: 1px solid var(--btn-3);
-  }
+  // &:hover {
+  //   cursor: default;
+  //   color: var(--btn-1);
+  //   background: var(--btn-2);
+  //   border: 1px solid var(--btn-3);
+  // }
 }
 @media (hover: hover) {
-  .menu {
-    &__text {
+  %btn {
+    &:hover {
+      color: var(--btn-4);
+      background: var(--btn-5);
+      border: 1px solid var(--btn-3);
+      cursor: pointer;
     }
+  }
+  .disable {
+    &:hover {
+      cursor: default;
+      color: var(--btn-1);
+      background: var(--btn-2);
+      border: 1px solid var(--btn-3);
+    }
+  }
+  .header {
+    &__logo {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &__sound,
+    &__sound-off {
+      &:hover {
+        filter: drop-shadow(0px 0px 1px var(--btn-4));
+        cursor: pointer;
+      }
+    }
+  }
+  .menu {
     &__level {
+      &:hover {
+        color: var(--field-5);
+        text-decoration: var(--field-5) underline;
+        cursor: pointer;
+      }
+    }
+  }
+  .level {
+    &__field {
+      &:hover {
+        color: var(--field-5);
+        text-decoration: var(--field-5) underline;
+        cursor: pointer;
+      }
     }
   }
 }

@@ -142,6 +142,7 @@ function createOffensiveBottom() {
 
 function continueSavedGame() {
   const storedMatrix = JSON.parse(localStorage.getItem('redq-matrix'));
+  if (storedMatrix === null) return false;
   const storedOpenCount = localStorage.getItem('redq-openCount');
   const storedCount = localStorage.getItem('redq-count');
   const storedParam = localStorage.getItem('redq-param');
