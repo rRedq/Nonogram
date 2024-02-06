@@ -18,7 +18,7 @@ function levelChoose(size) {
   level.append(fields);
   level.append(btn);
 
-  desc.textContent = `Поле ${size}x${size}`;
+  desc.textContent = `Field: ${size}x${size}`;
   headline.textContent = 'Select game:';
   btn.textContent = 'Back';
 

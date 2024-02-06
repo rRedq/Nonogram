@@ -19,7 +19,7 @@ import { checkSound, isSound, checkTheme, chooseGame } from './clicks.js';
   container.append(sound);
   container.append(btnAchieve);
   container.append(btnBack);
-  btnBack.textContent = 'Main';
+  btnBack.textContent = 'New game';
   btnAchieve.textContent = 'Hight score';
   logo.innerHTML = '<span>Nonograms online</span>';
 

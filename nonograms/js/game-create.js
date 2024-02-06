@@ -85,9 +85,12 @@ function createGame(param, id) {
 
   field.addEventListener('click', fieldLeftClick);
   field.addEventListener('contextmenu', fieldRightClick);
-  main.addEventListener('contextmenu', (e) => {
+  upperHints.addEventListener('contextmenu', block);
+  lowerHints.addEventListener('contextmenu', block);
+
+  function block(e) {
     e.preventDefault();
-  });
+  }
 }
 
 function createOffensive(param, id) {
